@@ -1,8 +1,8 @@
-
+import Rect from "./comp/rect"
 function App() {
   return(
     <div>
-      <h1>Hello</h1>
+      <Rect></Rect>
     </div>
   )
 }
