@@ -1,10 +1,22 @@
-import React, { useRef } from "react"
-import type { CSSProperties } from "react"
+import React, { useRef } from "react";
+import type { CSSProperties } from "react";
 
-export default function Rect() {
-  const textareaRef = useRef<HTMLTextAreaElement>(null)
+export default function Rect({
+  impstyle,
+  mousedown,
+}: {
+  impstyle: CSSProperties;
+  mousedown: React.MouseEventHandler<HTMLTextAreaElement>;
+}) {
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const style: CSSProperties = {
+  const containerStyle: CSSProperties = {
+    position: "absolute",      // moved here
+    display: "inline-block",   // keep inline
+    ...impstyle,               // your x/y from App
+  };
+
+  const textareaStyle: CSSProperties = {
     border: "5px solid black",
     padding: "10px",
     minWidth: "100px",
@@ -14,7 +26,7 @@ export default function Rect() {
     width: "300px",
     height: "150px",
     boxSizing: "border-box",
-  }
+  };
 
   const ballStyle: CSSProperties = {
     width: "14px",
@@ -22,48 +34,47 @@ export default function Rect() {
     backgroundColor: "blue",
     borderRadius: "50%",
     position: "absolute",
-    zIndex: 1000,      // make sure it's above textarea
-    opacity: 0,        // hidden by default
+    zIndex: 1000,
+    opacity: 0,
     transition: "opacity 0.3s ease",
-    border: "2px solid white",  // White border for better visibility
+    border: "2px solid white",
     boxSizing: "border-box",
-  }
+  };
 
   const handleMouseDown =
     (direction: "top" | "right" | "bottom" | "left") =>
     (e: React.MouseEvent<HTMLDivElement>) => {
-      e.preventDefault()
-      if (!textareaRef.current) return
+      e.preventDefault();
+      if (!textareaRef.current) return;
 
-      const startX = e.clientX
-      const startY = e.clientY
-      const startWidth = textareaRef.current.offsetWidth
-      const startHeight = textareaRef.current.offsetHeight
+      const startX = e.clientX;
+      const startY = e.clientY;
+      const startW = textareaRef.current.offsetWidth;
+      const startH = textareaRef.current.offsetHeight;
 
-      function onMouseMove(event: MouseEvent) {
-        if (!textareaRef.current) return
-        const dx = event.clientX - startX
-        const dy = event.clientY - startY
-
+      function onMouseMove(evt: MouseEvent) {
+        if (!textareaRef.current) return;
+        const dx = evt.clientX - startX;
+        const dy = evt.clientY - startY;
         if (direction === "right") {
-          textareaRef.current.style.width = `${startWidth + dx}px`
+          textareaRef.current.style.width = `${startW + dx}px`;
         } else if (direction === "left") {
-          textareaRef.current.style.width = `${startWidth - dx}px`
+          textareaRef.current.style.width = `${startW - dx}px`;
         } else if (direction === "bottom") {
-          textareaRef.current.style.height = `${startHeight + dy}px`
-        } else if (direction === "top") {
-          textareaRef.current.style.height = `${startHeight - dy}px`
+          textareaRef.current.style.height = `${startH + dy}px`;
+        } else {
+          textareaRef.current.style.height = `${startH - dy}px`;
         }
       }
 
       function onMouseUp() {
-        document.removeEventListener("mousemove", onMouseMove)
-        document.removeEventListener("mouseup", onMouseUp)
+        document.removeEventListener("mousemove", onMouseMove);
+        document.removeEventListener("mouseup", onMouseUp);
       }
 
-      document.addEventListener("mousemove", onMouseMove)
-      document.addEventListener("mouseup", onMouseUp)
-    }
+      document.addEventListener("mousemove", onMouseMove);
+      document.addEventListener("mouseup", onMouseUp);
+    };
 
   return (
     <>
@@ -73,73 +84,63 @@ export default function Rect() {
         }
       `}</style>
 
-      <div
-        className="resizable-container"
-        style={{ position: "relative", display: "inline-block" }}
-      >
+      <div className="resizable-container" style={containerStyle}>
         <textarea
           ref={textareaRef}
-          id="rect"
-          style={style}
+          style={textareaStyle}
           defaultValue="Text"
+          onMouseDown={mousedown}
         />
 
-        {/* Top ball */}
+        {/* Top */}
         <div
           className="resizer-ball"
           style={{
             ...ballStyle,
-            top: "-10px",       // a bit above the border
+            top: "-10px",
             left: "50%",
             transform: "translateX(-50%)",
             cursor: "ns-resize",
           }}
           onMouseDown={handleMouseDown("top")}
-          title="Resize Top"
         />
-
-        {/* Right ball */}
+        {/* Right */}
         <div
           className="resizer-ball"
           style={{
             ...ballStyle,
-            right: "-10px",     // outside right border
+            right: "-10px",
             top: "50%",
             transform: "translateY(-50%)",
             cursor: "ew-resize",
           }}
           onMouseDown={handleMouseDown("right")}
-          title="Resize Right"
         />
-
-        {/* Bottom ball */}
+        {/* Bottom */}
         <div
           className="resizer-ball"
           style={{
             ...ballStyle,
-            bottom: "-10px",    // outside bottom border
+            bottom: "-10px",
             left: "50%",
             transform: "translateX(-50%)",
             cursor: "ns-resize",
           }}
           onMouseDown={handleMouseDown("bottom")}
-          title="Resize Bottom"
         />
-
-        {/* Left ball */}
+        {/* Left */}
         <div
           className="resizer-ball"
           style={{
             ...ballStyle,
-            left: "-10px",      // outside left border
+            left: "-10px",
             top: "50%",
             transform: "translateY(-50%)",
             cursor: "ew-resize",
           }}
           onMouseDown={handleMouseDown("left")}
-          title="Resize Left"
         />
       </div>
     </>
-  )
+  );
 }
