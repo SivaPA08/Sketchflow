@@ -7,6 +7,7 @@
       "topbar     topbar    topbar"
       "leftbar    board     rightbar"
       "bottombar  bottombar bottombar";
+      background-color: whitesmoke;
   }
   
   .topbar {
