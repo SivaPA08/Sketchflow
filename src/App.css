@@ -1,0 +1,64 @@
+.bdy {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 200px calc(100% - 300px) 100px;
+    grid-template-rows: 65px 1fr 20px;
+    grid-template-areas:
+      "topbar     topbar    topbar"
+      "leftbar    board     rightbar"
+      "bottombar  bottombar bottombar";
+  }
+  
+  .topbar {
+    grid-area: topbar;
+    background: #000;
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+  }
+  .topbar h3 {
+    color: #fff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+  }
+  
+  .leftbar {
+    grid-area: leftbar;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.25);
+  }
+  
+  .rightbar {
+    grid-area: rightbar;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.25);
+  }
+  
+  .board {
+    grid-area: board;
+    background: #000;
+  
+    /* horizontal-only scroll */
+    overflow-x: auto;
+    overflow-y: hidden;
+  
+    /* vertical spacing */
+    margin: 30px 0;
+  }
+  
+  .scroll-wrap {
+    width: 200vw;       /* twice the viewport width */
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .bottombar {
+    grid-area: bottombar;
+    background: blueviolet;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 0.9rem;
+  }
+  
