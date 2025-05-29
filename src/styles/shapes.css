@@ -1,0 +1,111 @@
+.mainleft{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-rows: 1fr 1fri 1fr;
+    grid-template-columns: 100%;
+    grid-template-areas: 
+    "shapes"
+    "lines"
+    "moreshapes"
+    ;
+    place-items: center;
+    overflow: none;
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+    
+}
+
+.shapes{
+    grid-area: shapes;
+    width: 90%;
+    height: 200px;
+    background-color: rgb(255, 255, 255);
+    margin-top: 20px;
+    border: 2px solid black;
+
+}
+.shapes .title{
+    width: 100%;
+    height: 30px;
+    color: rgb(0, 0, 0);
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.shapes .title p{
+    font-family: Arial, Helvetica, sans-serif;
+}
+.shapes .contents{
+    width: 100%;
+    height: calc(100% - 30px);
+    border: 2px solid black;
+    overflow: none;
+    overflow-y: auto;
+    scrollbar-width: 10px;
+    scroll-behavior: smooth;
+}
+
+.lines{
+    grid-area: lines;
+    width: 90%;
+    height: 200px;
+    background-color: rgb(255, 255, 255);
+    margin-top: 20px;
+    border: 2px solid black;
+    
+}
+.lines .title{
+    width: 100%;
+    height: 30px;
+    color: rgb(0, 0, 0);
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.lines.title p{
+    font-family: Arial, Helvetica, sans-serif;
+}
+.lines .contents{
+    width: 100%;
+    height: calc(100% - 30px);
+    border: 2px solid black;
+    overflow: none;
+    overflow-y: auto;
+    scrollbar-width: 10px;
+    scroll-behavior: smooth;
+}
+
+
+.moreshapes{
+    grid-area: moreshapes;
+    width: 90%;
+    height: 200px;
+    background-color: rgb(255, 255, 255);
+    margin-top: 20px;
+    border: 2px solid black;
+
+}
+.moreshapes .title{
+    width: 100%;
+    height: 30px;
+    color: rgb(0, 0, 0);
+    border: 2px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.moreshapes .title p{
+    font-family: Arial, Helvetica, sans-serif;
+}
+.moreshapes .contents{
+    width: 100%;
+    height: calc(100% - 30px);
+    border: 2px solid black;
+    overflow: none;
+    overflow-y: auto;
+    scrollbar-width: 10px;
+    scroll-behavior: smooth;
+}
