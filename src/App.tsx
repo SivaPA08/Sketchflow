@@ -1,5 +1,5 @@
 import "./App.css";
-
+import Rectangle from "./comp/Rectangle";
 export default function App() {
   return (
     <div className="bdy">
@@ -13,7 +13,7 @@ export default function App() {
 
       <main className="board">
         <div className="scroll-wrap">
-          <p style={{color:"white"}}>Scrolling</p>
+          <Rectangle/>
           {/* Your horizontal content goes here */}
         </div>
       </main>

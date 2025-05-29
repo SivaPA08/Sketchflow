@@ -56,7 +56,7 @@
     height: 100%;       /* fill the board cell vertically */
     
     /* background image lives here so it scrolls */
-    background-image: url("pictures/board.jpg");
+    background-image: url("pictures/board1.jpg");
     background-repeat: repeat;
     background-position: top left;
     
