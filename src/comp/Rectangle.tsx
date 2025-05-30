@@ -99,7 +99,7 @@ export default function Rectangle() {
     top: pos.y,
     width: dims.width,
     height: dims.height,
-    border: "2px solid red",
+    border: "2px solid black",
     background: "transparent",
     cursor: editing ? "text" : (dragRef.current ? "grabbing" : "grab"),
   };
@@ -109,7 +109,7 @@ export default function Rectangle() {
     height: "100%",
     boxSizing: "border-box",
     border: "none",
-    background: "transparent",
+    background: "white",
     padding: 8,
     fontSize: 14,
     resize: "none",
