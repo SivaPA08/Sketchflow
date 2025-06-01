@@ -5,12 +5,14 @@ type EdgeHandle = "top" | "right" | "bottom" | "left";
 type Point = { x: number; y: number };
 type Dims = { width: number; height: number };
 
-export default function Rectangle() {
+export default function Rectangle(
+  {left,top,width,height}:{left:number,top:number,width:number,height:number}
+) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
-  const [dims, setDims] = useState<Dims>({ width: 200, height: 100 });
+  const [dims, setDims] = useState<Dims>({ width: width, height: height });
   const [hovered, setHovered] = useState(false);
-  const [pos, setPos] = useState<Point>({ x: 50, y: 50 });
+  const [pos, setPos] = useState<Point>({ x: left, y: top });
   const [editing, setEditing] = useState(false);
 
   // refs

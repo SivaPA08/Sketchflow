@@ -1,7 +1,28 @@
 import "./App.css";
 import "./styles/shapes.css"
 import Rectangle from "./comp/Rectangle";
+import { useState} from "react";
+
+interface Item{
+  id:number;
+  left:number;
+  top:number;
+  width:number;
+  height:number;
+}
 export default function App() {
+  const [items,setitems]=useState<Item[]>([]);
+  function addItem(){
+    const newItem:Item={
+      id:Date.now(),
+      left:50,
+      top:50,
+      width:200,
+      height:100,
+    }
+    setitems(prev=>[...prev,newItem]);
+    
+  }
   return (
     <div className="bdy">
       <header className="topbar">
@@ -14,7 +35,9 @@ export default function App() {
           <div className="title">
             <p>Shapes</p>
           </div>
-          <div className="contents">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Sint ratione et sapiente repudiandae praesentium distinctio quae. Voluptatem, amet? Ea quibusdam optio mollitia quasi id vero obcaecati corporis earum culpa consequatur?</div>
+          <div className="contents">
+            <button onClick={addItem}>Rectangle</button>
+          </div>
         </div>
 
         <div className="lines">
@@ -39,7 +62,11 @@ export default function App() {
 
       <main className="board">
         <div className="scroll-wrap">
-          <Rectangle/>
+          {items.map(
+            item=>(
+              <Rectangle key={item.id} left={item.left} top={item.top} width={item.width} height={item.height}/>
+            )
+          )}
           {/* Your horizontal content goes here */}
         </div>
       </main>
