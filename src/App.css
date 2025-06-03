@@ -2,12 +2,12 @@
     min-height: 100vh;
     display: grid;
     grid-template-columns: 200px calc(100% - 300px) 100px;
-    grid-template-rows: 65px 1fr 20px;
+    grid-template-rows: 65px calc( 100vh - 85px ) 20px;
     grid-template-areas:
       "topbar     topbar    topbar"
       "leftbar    board     rightbar"
       "bottombar  bottombar bottombar";
-    background-color: whitesmoke;
+    background-color: rgb(51, 41, 41);
   }
   
   .topbar {
@@ -16,6 +16,7 @@
     display: flex;
     align-items: center;
     padding-left: 1rem;
+    border-bottom: 2px solid grey;
   }
   .topbar h3 {
     color: #fff;
@@ -25,17 +26,18 @@
   
   .leftbar {
     grid-area: leftbar;
-    background: #fff;
+    background: #000000;
     box-shadow: 0 0 10px rgba(0,0,0,0.25);
+    border-right: 2px solid grey;
     position: relative;
     z-index: 2;
   }
   
   .rightbar {
     grid-area: rightbar;
-    background: #fff;
+    background: #000000;
     box-shadow: 0 0 10px rgba(0,0,0,0.25);
-
+    border-left: 2px solid grey;
     position: relative;
     z-index: 2;
   }
@@ -43,7 +45,7 @@
   .board {
     grid-area: board;
     overflow-x: auto;   /* horizontal-only scroll */
-    overflow-y: hidden;
+    overflow-y: auto;
     margin: 30px 0;     /* 30px top and bottom spacing */
 
     position: relative;
@@ -52,10 +54,10 @@
   
   .scroll-wrap {
     width: 200vw;       /* twice the viewport width */
-    height: 100%;       /* fill the board cell vertically */
+    height: 200vh;       /* fill the board cell vertically */
     
     /* background image lives here so it scrolls */
-    background-image: url("pictures/board1.jpg");
+    background-image: url("pictures/gg.png");
     background-repeat: repeat;
     background-position: top left;
     
