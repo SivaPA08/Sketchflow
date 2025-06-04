@@ -9,6 +9,7 @@ interface Item{
   top:number;
   width:number;
   height:number;
+  bgColor:string;
 }
 export default function App() {
   const [items,setitems]=useState<Item[]>([]);
@@ -28,6 +29,7 @@ export default function App() {
       top:scrollY+visibleH/2,
       width:200,
       height:100,
+      bgColor:contBg,
     }
     setitems(prev=>[...prev,newItem]);
     
@@ -73,7 +75,7 @@ export default function App() {
         <div className="scroll-wrap">
           {items.map(
             item=>(
-              <Rectangle key={item.id} left={item.left} top={item.top} width={item.width} height={item.height} bg={contBg}/>
+              <Rectangle key={item.id} left={item.left} top={item.top} width={item.width} height={item.height} bg={item.bgColor}/>
             )
           )}
           {/* Your horizontal content goes here */}
