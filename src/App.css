@@ -57,7 +57,7 @@
     height: 200vh;       /* fill the board cell vertically */
     
     /* background image lives here so it scrolls */
-    background-image: url("pictures/gg.png");
+    background-image: url("/public/pictures/darkbg.png");
     background-repeat: repeat;
     background-position: top left;
     
