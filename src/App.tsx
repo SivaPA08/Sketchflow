@@ -1,7 +1,7 @@
 import "./App.css";
 import "./styles/shapes.css"
 import Rectangle from "./comp/Rectangle";
-import { useState} from "react";
+import {useRef, useState} from "react";
 
 interface Item{
   id:number;
@@ -12,11 +12,19 @@ interface Item{
 }
 export default function App() {
   const [items,setitems]=useState<Item[]>([]);
+  const boardRef=useRef<HTMLDivElement|null>(null);
   function addItem(){
+    const boardele=boardRef.current;
+    if(!boardele) return;
+    
+    const visibleW=boardele.clientWidth;
+    const visibleH=boardele.clientHeight;
+    const scrollX=boardele.scrollLeft;
+    const scrollY=boardele.scrollTop;
     const newItem:Item={
       id:Date.now(),
-      left:50,
-      top:50,
+      left:scrollX+visibleW/2,
+      top:scrollY+visibleH/2,
       width:200,
       height:100,
     }
@@ -60,7 +68,7 @@ export default function App() {
         </div>
       </aside>
 
-      <main className="board">
+      <main className="board" ref={boardRef}>
         <div className="scroll-wrap">
           {items.map(
             item=>(
