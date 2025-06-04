@@ -13,6 +13,7 @@ interface Item{
 export default function App() {
   const [items,setitems]=useState<Item[]>([]);
   const boardRef=useRef<HTMLDivElement|null>(null);
+  const [contBg,setcontBg]=useState<string>("white")
   function addItem(){
     const boardele=boardRef.current;
     if(!boardele) return;
@@ -72,7 +73,7 @@ export default function App() {
         <div className="scroll-wrap">
           {items.map(
             item=>(
-              <Rectangle key={item.id} left={item.left} top={item.top} width={item.width} height={item.height}/>
+              <Rectangle key={item.id} left={item.left} top={item.top} width={item.width} height={item.height} bg={contBg}/>
             )
           )}
           {/* Your horizontal content goes here */}
@@ -80,6 +81,9 @@ export default function App() {
       </main>
 
       <aside className="rightbar">
+        <button onClick={()=>setcontBg("black")}>Black</button>
+        <button onClick={()=>setcontBg("red")}>Red</button>
+        <button onClick={()=>setcontBg("white")}>White</button>
         {/* right-sidebar content */}
       </aside>
 

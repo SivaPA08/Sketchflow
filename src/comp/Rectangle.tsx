@@ -6,7 +6,7 @@ type Point = { x: number; y: number };
 type Dims = { width: number; height: number };
 
 export default function Rectangle(
-  {left,top,width,height}:{left:number,top:number,width:number,height:number}
+  {left,top,width,height,bg}:{left:number,top:number,width:number,height:number,bg:string}
 ) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -111,7 +111,7 @@ export default function Rectangle(
     height: "100%",
     boxSizing: "border-box",
     border: "none",
-    background: "white",
+    background: bg,
     padding: 8,
     fontSize: 14,
     resize: "none",
