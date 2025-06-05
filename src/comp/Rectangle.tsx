@@ -111,7 +111,8 @@ export default function Rectangle(
     top: pos.y,
     width: dims.width,
     height: dims.height,
-    border: "2px solid black",
+    border:selected?"10px solid aqua":"2px solid black",
+    //border: "2px solid black",
     background: "transparent",
     cursor: editing ? "text" : (dragRef.current ? "grabbing" : "grab"),
   };
