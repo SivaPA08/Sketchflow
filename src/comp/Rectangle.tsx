@@ -5,9 +5,19 @@ type EdgeHandle = "top" | "right" | "bottom" | "left";
 type Point = { x: number; y: number };
 type Dims = { width: number; height: number };
 
+type Props={
+  left:number;
+  top:number;
+  width:number;
+  height:number;
+  bg:string;
+  selected:boolean,
+  onclick:()=>void;
+}
+
+
 export default function Rectangle(
-  {left,top,width,height,bg}:{left:number,top:number,width:number,height:number,bg:string}
-) {
+  {left,top,width,height,bg,selected,onclick}:Props) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const [dims, setDims] = useState<Dims>({ width: width, height: height });
@@ -145,6 +155,7 @@ export default function Rectangle(
 
   return (
     <div
+      onClick={onclick}
       ref={textareaRef as React.Ref<HTMLDivElement>}
       style={containerStyle}
       onMouseEnter={() => setHovered(true)}

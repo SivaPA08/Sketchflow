@@ -15,6 +15,7 @@ export default function App() {
   const [items,setitems]=useState<Item[]>([]);
   const boardRef=useRef<HTMLDivElement|null>(null);
   const [contBg,setcontBg]=useState<string>("white")
+  const [selectedId,setselecteddId]=useState<number |null>(null);
   function addItem(){
     const boardele=boardRef.current;
     if(!boardele) return;
@@ -33,6 +34,14 @@ export default function App() {
     }
     setitems(prev=>[...prev,newItem]);
     
+  }
+  function BGofCont(color:string){
+    setcontBg(color);
+    setitems(previtem=>
+      previtem.map(item=>
+        item.id===selectedId?{...item,bgColor:color}:item
+      )
+    )
   }
   return (
     <div className="bdy">
@@ -75,7 +84,7 @@ export default function App() {
         <div className="scroll-wrap">
           {items.map(
             item=>(
-              <Rectangle key={item.id} left={item.left} top={item.top} width={item.width} height={item.height} bg={item.bgColor}/>
+              <Rectangle key={item.id} left={item.left} top={item.top} width={item.width} height={item.height} bg={item.bgColor} selected={item.id===selectedId} onclick={()=>setselecteddId(item.id)}/>
             )
           )}
           {/* Your horizontal content goes here */}
@@ -83,9 +92,9 @@ export default function App() {
       </main>
 
       <aside className="rightbar">
-        <button onClick={()=>setcontBg("black")}>Black</button>
-        <button onClick={()=>setcontBg("red")}>Red</button>
-        <button onClick={()=>setcontBg("white")}>White</button>
+        <button onClick={()=>BGofCont("black")}>Black</button>
+        <button onClick={()=>BGofCont("red")}>Red</button>
+        <button onClick={()=>BGofCont("white")}>White</button>
         {/* right-sidebar content */}
       </aside>
 
