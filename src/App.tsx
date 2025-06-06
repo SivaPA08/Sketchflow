@@ -1,6 +1,6 @@
 import "./App.css";
 import "./styles/shapes.css"
-import Rectangle from "./comp/Rectangle";
+import Rectangle from "./shapes/Rectangle";
 import {useRef, useState} from "react";
 
 interface Item{
