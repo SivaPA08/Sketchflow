@@ -1,7 +1,7 @@
 import "./App.css";
 import "./styles/shapes.css"
 import Rectangle from "./shapes/Rectangle";
-import {useRef, useState} from "react";
+import {useEffect, useRef, useState, type MouseEvent} from "react";
 
 interface Item{
   id:number;
@@ -43,6 +43,37 @@ export default function App() {
       )
     )
   }
+
+
+  //Board Dragging:
+  const PointerPos=useRef<{x:number;y:number}>({x:0,y:0});
+  const IsPointerDragging=useRef<boolean>(false);
+  function MouseDownForPointer(e:MouseEvent){
+    if(e.button!=2) return;
+    IsPointerDragging.current=true;
+    PointerPos.current={x:e.clientX,y:e.clientY};
+  }
+  useEffect(() => {
+    function MouseMovePointer(e: MouseEvent) {
+      if (IsPointerDragging.current && boardRef.current) {
+        const dx = e.clientX - PointerPos.current.x;
+        const dy = e.clientY - PointerPos.current.y;
+        const speedFactor=0.5;
+        boardRef.current.scrollLeft -= dx * speedFactor;
+        boardRef.current.scrollTop -= dy * speedFactor;
+        PointerPos.current={x:e.clientX,y:e.clientY}
+      }
+    }
+    function MouseUpPointer(){
+      IsPointerDragging.current=false;
+    }
+    window.addEventListener('mousemove',MouseMovePointer as any);
+    window.addEventListener('mouseup',MouseUpPointer)
+    return ()=>{
+      window.removeEventListener('mousemove',MouseMovePointer as any);
+      window.removeEventListener('mouseup',MouseUpPointer);
+    }
+  }, [IsPointerDragging,PointerPos]);
   return (
     <div className="bdy">
       <header className="topbar">
@@ -80,7 +111,12 @@ export default function App() {
         </div>
       </aside>
 
-      <main className="board" ref={boardRef}>
+      <main className="board" 
+        ref={boardRef} 
+        onMouseDown={MouseDownForPointer}
+        onContextMenu={(e)=>e.preventDefault()}
+        onClick={()=>setselecteddId(null)}
+        >
         <div className="scroll-wrap">
           {items.map(
             item=>(
