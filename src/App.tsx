@@ -115,7 +115,6 @@ export default function App() {
         ref={boardRef} 
         onMouseDown={MouseDownForPointer}
         onContextMenu={(e)=>e.preventDefault()}
-        onClick={()=>setselecteddId(null)}
         >
         <div className="scroll-wrap">
           {items.map(
