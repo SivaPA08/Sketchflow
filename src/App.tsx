@@ -119,7 +119,16 @@ export default function App() {
         <div className="scroll-wrap">
           {items.map(
             item=>(
-              <Rectangle key={item.id} left={item.left} top={item.top} width={item.width} height={item.height} bg={item.bgColor} selected={item.id===selectedId} onclick={()=>setselecteddId(item.id)}/>
+              <Rectangle 
+                key={item.id} 
+                left={item.left} 
+                top={item.top} 
+                width={item.width} 
+                height={item.height} 
+                bg={item.bgColor} 
+                selected={item.id===selectedId} 
+                onclick={()=>setselecteddId(item.id)}
+              />
             )
           )}
           {/* Your horizontal content goes here */}
