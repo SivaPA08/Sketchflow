@@ -1,0 +1,71 @@
+.rightbar{
+    display: flex;
+    justify-content: center;
+}
+.bgcolordiv{
+    display: grid;
+    margin: 20px;
+    grid-template-columns: 100%;
+    grid-template-rows: 25px 500px;
+}
+.bgcolordiv .title{
+    color: white;
+    border-bottom: 5px solid grey;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.bgcolordiv .colors{
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 40px 40px 40px;
+    grid-template-rows: 40px 40px 40px;
+    grid-template-areas: 
+    "whitec wheatc yellowc"
+    "aquac greenyc greyc"
+    "redc orangec violetc"
+    ;
+
+}
+.bgcolordiv .colors button{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: none;
+}
+.wheatc{
+    grid-area: wheatc;
+    background-color: wheat;
+}
+.redc{
+    grid-area: redc;
+    background-color: red;
+}
+.whitec{
+    grid-area: whitec;
+    background-color: white;
+}
+.aquac{
+    grid-area: aquac;
+    background-color: aqua;
+}
+.yellowc{
+    grid-area: yellowc;
+    background-color: yellow;
+}
+.orangec{
+    grid-area: orangec;
+    background-color: orange;
+}
+
+.greenyc{
+    grid-area: greenyc;
+    background-color: green;
+}
+.violetc{
+    grid-area: violetc;
+    background-color: violet;
+}
+.greyc{
+    grid-area: greyc;
+    background-color: grey;
+}
