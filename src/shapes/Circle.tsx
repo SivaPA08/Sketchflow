@@ -16,7 +16,7 @@ type Props={
 }
 
 
-export default function RoundedRect(
+export default function Circle(
   {left,top,width,height,bg,selected,onclick}:Props) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -115,6 +115,7 @@ export default function RoundedRect(
     //border: "2px solid black",
     background: "transparent",
     cursor: editing ? "text" : (dragRef.current ? "grabbing" : "grab"),
+    overflow:"hidden",
   };
 
   const textareaStyle: CSSProperties = {
@@ -123,11 +124,15 @@ export default function RoundedRect(
     boxSizing: "border-box",
     border: "none",
     background: bg,
-    borderRadius:"15px",
+    borderRadius:"50%",
     padding: 8,
     fontSize: 14,
     resize: "none",
     pointerEvents: editing ? "auto" : "none",
+    overflow:'auto',
+    overflowWrap:'break-word',
+    whiteSpace:"pre-wrap",
+    textAlign:'center',
   };
 
   const handleStyle = (posHandle: EdgeHandle): CSSProperties => {

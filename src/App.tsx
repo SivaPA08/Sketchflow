@@ -3,6 +3,7 @@ import "./styles/shapes.css";
 import "./styles/rightbar.css";
 import Rectangle from "./shapes/Rectangle";
 import RoundedRect from "./shapes/RoundedRect";
+import Circle from "./shapes/Circle";
 import { useEffect, useRef, useState, type MouseEvent, type FC } from "react";
 
 export interface ShapeProps {
@@ -100,6 +101,7 @@ export default function App() {
             <div className="contents">
               <button onClick={() => addItem(Rectangle)}>Rectangle</button>
               <button onClick={() => addItem(RoundedRect)}>RR</button>
+              <button onClick={()=>addItem(Circle)}>Circle</button>
             </div>
           </div>
 
