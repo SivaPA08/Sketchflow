@@ -1,9 +1,19 @@
 import "./App.css";
 import "./styles/shapes.css";
-import "./styles/rightbar.css"
+import "./styles/rightbar.css";
 import Rectangle from "./shapes/Rectangle";
-import { useEffect, useRef, useState, type MouseEvent } from "react";
+import RoundedRect from "./shapes/RoundedRect";
+import { useEffect, useRef, useState, type MouseEvent, type FC } from "react";
 
+export interface ShapeProps {
+  left: number;
+  top: number;
+  width: number;
+  height: number;
+  bg: string;
+  selected: boolean;
+  onclick: () => void;
+}
 interface Item {
   id: number;
   left: number;
@@ -11,13 +21,14 @@ interface Item {
   width: number;
   height: number;
   bgColor: string;
+  Shape: FC<ShapeProps>;
 }
 export default function App() {
   const [items, setitems] = useState<Item[]>([]);
   const boardRef = useRef<HTMLDivElement | null>(null);
   const [contBg, setcontBg] = useState<string>("white");
   const [selectedId, setselecteddId] = useState<number | null>(null);
-  function addItem() {
+  function addItem(ShapeComp: FC<ShapeProps>) {
     const boardele = boardRef.current;
     if (!boardele) return;
 
@@ -32,6 +43,7 @@ export default function App() {
       width: 200,
       height: 100,
       bgColor: contBg,
+      Shape: ShapeComp,
     };
     setitems((prev) => [...prev, newItem]);
   }
@@ -86,7 +98,8 @@ export default function App() {
               <p>Shapes</p>
             </div>
             <div className="contents">
-              <button onClick={addItem}>Rectangle</button>
+              <button onClick={() => addItem(Rectangle)}>Rectangle</button>
+              <button onClick={() => addItem(RoundedRect)}>RR</button>
             </div>
           </div>
 
@@ -123,18 +136,21 @@ export default function App() {
         onContextMenu={(e) => e.preventDefault()}
       >
         <div className="scroll-wrap">
-          {items.map((item) => (
-            <Rectangle
-              key={item.id}
-              left={item.left}
-              top={item.top}
-              width={item.width}
-              height={item.height}
-              bg={item.bgColor}
-              selected={item.id === selectedId}
-              onclick={() => setselecteddId(item.id)}
-            />
-          ))}
+          {items.map((item) => {
+            const Shapecomponent = item.Shape;
+            return (
+              <Shapecomponent
+                key={item.id}
+                left={item.left}
+                top={item.top}
+                width={item.width}
+                height={item.height}
+                bg={item.bgColor}
+                selected={item.id === selectedId}
+                onclick={() => setselecteddId(item.id)}
+              />
+            );
+          })}
           {/* Your horizontal content goes here */}
         </div>
       </main>
@@ -143,14 +159,32 @@ export default function App() {
         <div className="bgcolordiv">
           <div className="title">BG color</div>
           <div className="colors">
-            <button className="wheatc" onClick={() => BGofCont("wheat")}></button>
+            <button
+              className="wheatc"
+              onClick={() => BGofCont("wheat")}
+            ></button>
             <button className="redc" onClick={() => BGofCont("red")}></button>
-            <button className="whitec" onClick={() => BGofCont("white")}></button>
+            <button
+              className="whitec"
+              onClick={() => BGofCont("white")}
+            ></button>
             <button className="aquac" onClick={() => BGofCont("aqua")}></button>
-            <button className="yellowc" onClick={() => BGofCont("yellow")}></button>
-            <button className="orangec" onClick={() => BGofCont("orange")}></button>
-            <button className="greenyc" onClick={() => BGofCont("greenyellow")}></button>
-            <button className="violetc" onClick={() => BGofCont("violet")}></button>
+            <button
+              className="yellowc"
+              onClick={() => BGofCont("yellow")}
+            ></button>
+            <button
+              className="orangec"
+              onClick={() => BGofCont("orange")}
+            ></button>
+            <button
+              className="greenyc"
+              onClick={() => BGofCont("greenyellow")}
+            ></button>
+            <button
+              className="violetc"
+              onClick={() => BGofCont("violet")}
+            ></button>
             <button className="greyc" onClick={() => BGofCont("grey")}></button>
           </div>
         </div>
