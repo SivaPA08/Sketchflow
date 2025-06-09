@@ -181,7 +181,7 @@ export default function App() {
             ></button>
             <button
               className="greenyc"
-              onClick={() => BGofCont("greenyellow")}
+              onClick={() => BGofCont("yellowgreen")}
             ></button>
             <button
               className="violetc"

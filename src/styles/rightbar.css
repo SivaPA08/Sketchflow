@@ -43,7 +43,7 @@
   .wheatc   { grid-area: wheatc;   background-color: wheat; }
   .yellowc  { grid-area: yellowc;  background-color: yellow; }
   .aquac    { grid-area: aquac;    background-color: aqua; }
-  .greenyc  { grid-area: greenyc;  background-color: green; }
+  .greenyc  { grid-area: greenyc;  background-color: greenyellow; }
   .greyc    { grid-area: greyc;    background-color: grey; }
   .redc     { grid-area: redc;     background-color: red; }
   .orangec  { grid-area: orangec;  background-color: orange; }
