@@ -7,14 +7,17 @@ import {
   } from "react";
   
   export interface LineProps {
+    left:number;
+    top:number;
+    bg:string;
     selected: boolean;
     onClick: () => void;
   }
   
   type Cord = { x1: number; y1: number; x2: number; y2: number };
   
-  const NormalLine: FC<LineProps> = ({ selected, onClick }) => {
-    const [cord, setCord] = useState<Cord>({ x1: 100, y1: 100, x2: 200, y2: 200 });
+  const NormalLine: FC<LineProps> = ({ left,top,bg,selected, onClick }) => {
+    const [cord, setCord] = useState<Cord>({ x1:left, y1:left, x2:top, y2: top});
     const dragging = useRef<"line" | "start" | "end" | null>(null);
     const offset = useRef({ x: 0, y: 0 });
   
@@ -80,7 +83,7 @@ import {
             top: midY - 2.5,
             width: length,
             height: 5,
-            background: "white",
+            background: bg,
             transform: `rotate(${angle}deg)`,
             transformOrigin: "center",
             cursor: "grab",

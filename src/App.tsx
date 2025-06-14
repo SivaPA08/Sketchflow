@@ -18,14 +18,17 @@ export interface ShapeProps {
   onclick: () => void;
 }
 
-export interface LineProps{
-  selected:boolean;
-  onClick:()=>void;
+export interface LineProps {
+  left:number;
+  top:number;
+  bg:string;
+  selected: boolean;
+  onClick: () => void;
 }
 
 interface Item {
   id: number;
-  isLine:false;
+  isLine: false;
   left: number;
   top: number;
   width: number;
@@ -34,13 +37,15 @@ interface Item {
   Shape: FC<ShapeProps>;
 }
 interface ItemLine {
-  id:number;
-  isLine:true;
-  Shape:FC<LineProps>;
+  id: number;
+  left:number;
+  top:number;
+  bgColor:string;
+  isLine: true;
+  Shape: FC<LineProps>;
 }
 
-type BordElement=Item|ItemLine;
-
+type BordElement = Item | ItemLine;
 
 export default function App() {
   const [items, setitems] = useState<BordElement[]>([]);
@@ -57,7 +62,7 @@ export default function App() {
     const scrollY = boardele.scrollTop;
     const newItem: Item = {
       id: Date.now(),
-      isLine:false,
+      isLine: false,
       left: scrollX + visibleW / 2,
       top: scrollY + visibleH / 2,
       width: 200,
@@ -76,13 +81,24 @@ export default function App() {
     );
   }
 
-  function addItemLine(Shapecomp:FC<LineProps>){
-    const newItem:ItemLine={
-      id:Date.now(),
-      isLine:true,
-      Shape:Shapecomp,
+  function addItemLine(Shapecomp: FC<LineProps>) {
+    const boardele = boardRef.current;
+    if (!boardele) return;
+
+    const visibleW = boardele.clientWidth;
+    const visibleH = boardele.clientHeight;
+    const scrollX = boardele.scrollLeft;
+    const scrollY = boardele.scrollTop;
+
+    const newItem: ItemLine = {
+      id: Date.now(),
+      left:scrollX+visibleW/2,
+      top:scrollY+visibleH/2,
+      bgColor:contBg,
+      isLine: true,
+      Shape: Shapecomp,
     };
-    setitems((prev)=>[...prev,newItem])
+    setitems((prev) => [...prev, newItem]);
   }
 
   //Board Dragging:
@@ -129,8 +145,8 @@ export default function App() {
             <div className="contents">
               <button onClick={() => addItem(Rectangle)}>Rectangle</button>
               <button onClick={() => addItem(RoundedRect)}>RR</button>
-              <button onClick={()=>addItem(Circle)}>Circle</button>
-              <button onClick={()=>addItem(Diamond)}>Diamond</button>
+              <button onClick={() => addItem(Circle)}>Circle</button>
+              <button onClick={() => addItem(Diamond)}>Diamond</button>
             </div>
           </div>
 
@@ -139,7 +155,7 @@ export default function App() {
               <p>Lines</p>
             </div>
             <div className="contents">
-              <button onClick={()=>addItemLine(NormalLine)}>Line</button>
+              <button onClick={() => addItemLine(NormalLine)}>Line</button>
             </div>
           </div>
 
@@ -165,26 +181,32 @@ export default function App() {
       >
         <div className="scroll-wrap">
           {items.map((item) => {
-            if(item.isLine){
-              const Linecomp=item.Shape as FC<LineProps>;
-              return <Linecomp
-              key={item.id}
-              selected={item.id===selectedId}
-              onClick={()=>setselecteddId(item.id)}
-              />
-            }
-            else{
-              const Shapecomp=item.Shape as FC<ShapeProps>
-              return <Shapecomp
-              key={item.id}
-              left={item.left}
-              top={item.top}
-              width={item.width}
-              height={item.height}
-              bg={item.bgColor}
-              selected={item.id===selectedId}
-              onclick={()=>setselecteddId(item.id)}
-              />
+            if (item.isLine) {
+              const Linecomp = item.Shape as FC<LineProps>;
+              return (
+                <Linecomp
+                  key={item.id}
+                  left={item.left}
+                  top={item.top}
+                  bg={item.bgColor}
+                  selected={item.id === selectedId}
+                  onClick={() => setselecteddId(item.id)}
+                />
+              );
+            } else {
+              const Shapecomp = item.Shape as FC<ShapeProps>;
+              return (
+                <Shapecomp
+                  key={item.id}
+                  left={item.left}
+                  top={item.top}
+                  width={item.width}
+                  height={item.height}
+                  bg={item.bgColor}
+                  selected={item.id === selectedId}
+                  onclick={() => setselecteddId(item.id)}
+                />
+              );
             }
           })}
           {/* Your horizontal content goes here */}
