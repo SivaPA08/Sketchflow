@@ -69,9 +69,7 @@ import {
       };
     }, []);
   
-    const outlineStyle = selected
-      ? { outline: "3px solid blue", outlineOffset: "3px" }
-      : {};
+
   
     return (
       <>
@@ -87,7 +85,6 @@ import {
             transform: `rotate(${angle}deg)`,
             transformOrigin: "center",
             cursor: "grab",
-            ...outlineStyle,
           }}
         />
   
@@ -100,7 +97,7 @@ import {
             width: 16,
             height: 16,
             borderRadius: "50%",
-            background: "transparent",
+            background: selected?"blue":"transparent",
             cursor: "pointer",
           }}
         />
@@ -114,7 +111,7 @@ import {
             width: 16,
             height: 16,
             borderRadius: "50%",
-            background: "transparent",
+            background: selected?"blue":"transparent",
             cursor: "pointer",
           }}
         />
