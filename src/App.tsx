@@ -5,6 +5,7 @@ import Rectangle from "./shapes/Rectangle";
 import RoundedRect from "./shapes/RoundedRect";
 import Circle from "./shapes/Circle";
 import Diamond from "./shapes/Diamond";
+import NormalLine from "./lines/normal";
 import { useEffect, useRef, useState, type MouseEvent, type FC } from "react";
 
 export interface ShapeProps {
@@ -16,8 +17,15 @@ export interface ShapeProps {
   selected: boolean;
   onclick: () => void;
 }
+
+export interface LineProps{
+  selected:boolean;
+  onClick:()=>void;
+}
+
 interface Item {
   id: number;
+  isLine:false;
   left: number;
   top: number;
   width: number;
@@ -25,8 +33,17 @@ interface Item {
   bgColor: string;
   Shape: FC<ShapeProps>;
 }
+interface ItemLine {
+  id:number;
+  isLine:true;
+  Shape:FC<LineProps>;
+}
+
+type BordElement=Item|ItemLine;
+
+
 export default function App() {
-  const [items, setitems] = useState<Item[]>([]);
+  const [items, setitems] = useState<BordElement[]>([]);
   const boardRef = useRef<HTMLDivElement | null>(null);
   const [contBg, setcontBg] = useState<string>("white");
   const [selectedId, setselecteddId] = useState<number | null>(null);
@@ -40,6 +57,7 @@ export default function App() {
     const scrollY = boardele.scrollTop;
     const newItem: Item = {
       id: Date.now(),
+      isLine:false,
       left: scrollX + visibleW / 2,
       top: scrollY + visibleH / 2,
       width: 200,
@@ -56,6 +74,15 @@ export default function App() {
         item.id === selectedId ? { ...item, bgColor: color } : item
       )
     );
+  }
+
+  function addItemLine(Shapecomp:FC<LineProps>){
+    const newItem:ItemLine={
+      id:Date.now(),
+      isLine:true,
+      Shape:Shapecomp,
+    };
+    setitems((prev)=>[...prev,newItem])
   }
 
   //Board Dragging:
@@ -112,10 +139,7 @@ export default function App() {
               <p>Lines</p>
             </div>
             <div className="contents">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum a
-              possimus minima sunt nam quas sed. Sint, reprehenderit corporis
-              nulla reiciendis nihil temporibus fugit eveniet possimus ratione
-              quae, rem aut.
+              <button onClick={()=>addItemLine(NormalLine)}>Line</button>
             </div>
           </div>
 
@@ -141,19 +165,27 @@ export default function App() {
       >
         <div className="scroll-wrap">
           {items.map((item) => {
-            const Shapecomponent = item.Shape;
-            return (
-              <Shapecomponent
-                key={item.id}
-                left={item.left}
-                top={item.top}
-                width={item.width}
-                height={item.height}
-                bg={item.bgColor}
-                selected={item.id === selectedId}
-                onclick={() => setselecteddId(item.id)}
+            if(item.isLine){
+              const Linecomp=item.Shape as FC<LineProps>;
+              return <Linecomp
+              key={item.id}
+              selected={item.id===selectedId}
+              onClick={()=>setselecteddId(item.id)}
               />
-            );
+            }
+            else{
+              const Shapecomp=item.Shape as FC<ShapeProps>
+              return <Shapecomp
+              key={item.id}
+              left={item.left}
+              top={item.top}
+              width={item.width}
+              height={item.height}
+              bg={item.bgColor}
+              selected={item.id===selectedId}
+              onclick={()=>setselecteddId(item.id)}
+              />
+            }
           })}
           {/* Your horizontal content goes here */}
         </div>
