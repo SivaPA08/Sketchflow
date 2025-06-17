@@ -165,17 +165,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="moreshapes">
-            <div className="title">
-              <p>More Shapes</p>
-            </div>
-            <div className="contents">
-              Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum a
-              possimus minima sunt nam quas sed. Sint, reprehenderit corporis
-              nulla reiciendis nihil temporibus fugit eveniet possimus ratione
-              quae, rem aut.
-            </div>
-          </div>
+          
         </div>
       </aside>
 

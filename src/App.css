@@ -2,7 +2,7 @@
     min-height: 100vh;
     display: grid;
     grid-template-columns: 200px calc(100% - 400px) 200px;
-    grid-template-rows: 65px calc( 100vh - 85px ) 20px;
+    grid-template-rows: 80px calc( 100vh - 100px ) 20px;
     grid-template-areas:
       "topbar     topbar    topbar"
       "leftbar    board     rightbar"
