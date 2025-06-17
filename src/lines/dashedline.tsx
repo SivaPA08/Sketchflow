@@ -9,6 +9,7 @@ import {
   export interface LineProps {
     left:number;
     top:number;
+    length?:number,
     bg:string;
     selected: boolean;
     onClick: () => void;
@@ -16,8 +17,8 @@ import {
   
   type Cord = { x1: number; y1: number; x2: number; y2: number };
   
-  const DashedLine: FC<LineProps> = ({ left,top,bg,selected, onClick }) => {
-    const [cord, setCord] = useState<Cord>({ x1:left, y1:left, x2:top, y2: top});
+  const DashedLine: FC<LineProps> = ({ left,top,bg,length:defaultLength=100,selected, onClick }) => {
+    const [cord, setCord] = useState<Cord>({ x1:left, y1:top, x2:left+defaultLength, y2: top});
     const dragging = useRef<"line" | "start" | "end" | null>(null);
     const offset = useRef({ x: 0, y: 0 });
   
