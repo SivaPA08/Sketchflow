@@ -16,7 +16,7 @@ import {
   
   type Cord = { x1: number; y1: number; x2: number; y2: number };
   
-  const NormalLine: FC<LineProps> = ({ left,top,bg,selected, onClick }) => {
+  const DoubleLine: FC<LineProps> = ({ left,top,bg,selected, onClick }) => {
     const [cord, setCord] = useState<Cord>({ x1:left, y1:left, x2:top, y2: top});
     const dragging = useRef<"line" | "start" | "end" | null>(null);
     const offset = useRef({ x: 0, y: 0 });
@@ -80,8 +80,10 @@ import {
             left: midX - length / 2,
             top: midY - 2.5,
             width: length,
-            height: 0,
-            border:"2px solid "+bg,
+            height: 8,
+            border:"2px double "+bg,
+            borderLeft:'none',
+            borderRight:'none',
             transform: `rotate(${angle}deg)`,
             transformOrigin: "center",
             cursor: "grab",
@@ -119,4 +121,4 @@ import {
     );
   };
   
-  export default NormalLine;
+  export default DoubleLine;

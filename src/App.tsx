@@ -6,6 +6,9 @@ import RoundedRect from "./shapes/RoundedRect";
 import Circle from "./shapes/Circle";
 import Diamond from "./shapes/Diamond";
 import NormalLine from "./lines/normal";
+import DashedLine from "./lines/dashedline";
+import DottedLine from "./lines/dottedline";
+import DoubleLine from "./lines/doubleline";
 import { useEffect, useRef, useState, type MouseEvent, type FC } from "react";
 
 export interface ShapeProps {
@@ -156,6 +159,9 @@ export default function App() {
             </div>
             <div className="contents">
               <button onClick={() => addItemLine(NormalLine)}>Line</button>
+              <button onClick={()=>addItemLine(DashedLine)}>DashedLine</button>
+              <button onClick={()=>addItemLine(DottedLine)}>Dottedline</button>
+              <button onClick={()=>addItemLine(DoubleLine)}>DoubleLine</button>
             </div>
           </div>
 
