@@ -79,5 +79,13 @@
     scrollbar-width: 10px;
     scroll-behavior: smooth;
 }
+.lines button,.shapes button{
+    width: 50%;
+    height: 80px;
+    background-color: black;
+    color: white;
+    border-left: none;
+    border-top: none;
+}
 
 
