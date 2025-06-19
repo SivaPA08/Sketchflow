@@ -146,10 +146,10 @@ export default function App() {
               <p>Shapes</p>
             </div>
             <div className="contents">
-              <button id="rectangle" onClick={() => addItem(Rectangle)}>rect</button>
-              <button id="roundedrect" onClick={() => addItem(RoundedRect)}>rr</button>
-              <button id="circle" onClick={() => addItem(Circle)}>cir</button>
-              <button id="diamond" onClick={() => addItem(Diamond)}>dia</button>
+              <button id="rectangle" onClick={() => addItem(Rectangle)}></button>
+              <button id="roundedrect" onClick={() => addItem(RoundedRect)}></button>
+              <button id="circle" onClick={() => addItem(Circle)}></button>
+              <button id="diamond" onClick={() => addItem(Diamond)}></button>
             </div>
           </div>
 
@@ -158,10 +158,10 @@ export default function App() {
               <p>Lines</p>
             </div>
             <div className="contents">
-              <button onClick={() => addItemLine(NormalLine)}>Line</button>
-              <button onClick={()=>addItemLine(DashedLine)}>DashedLine</button>
-              <button onClick={()=>addItemLine(DottedLine)}>Dottedline</button>
-              <button onClick={()=>addItemLine(DoubleLine)}>DoubleLine</button>
+              <button id="line" onClick={() => addItemLine(NormalLine)}></button>
+              <button id="dashedline" onClick={()=>addItemLine(DashedLine)}></button>
+              <button id="dottedline" onClick={()=>addItemLine(DottedLine)}></button>
+              <button id="doubleline" onClick={()=>addItemLine(DoubleLine)}></button>
             </div>
           </div>
 

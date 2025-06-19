@@ -86,7 +86,11 @@
     border-left: none;
     border-top: none;
 }
-.shapes #rectangle,.shapes #roundedrect,.shapes #circle,.shapes #diamond {
+.lines button:hover,.shapes button:hover{
+    border: 5px solid grey;
+}
+.shapes #rectangle,.shapes #roundedrect,.shapes #circle,.shapes #diamond ,
+.lines #line,.lines #dashedline,.lines #dottedline,.lines #doubleline{
     background-color: transparent;
     background-size: contain;
     background-position: center;
@@ -104,4 +108,16 @@
 } 
 .shapes #diamond{
     background-image: url("/public/left/diamond.png");
+}
+.lines #line{
+    background-image: url("/public/left/Lines/normal.png");
+}
+.lines #dashedline{
+    background-image: url("/public/left/Lines/dashedline.png");
+}
+.lines #dottedline{
+    background-image: url("/public/left/Lines/dottedline.png");
+}
+.lines #doubleline{
+    background-image: url("/public/left/Lines/doubleline.png");
 }

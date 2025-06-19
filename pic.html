@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Diamond Inside Square</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bordered Tilted Line Inside Square</title>
   <style>
     body {
       margin: 0;
       background-color: black;
+      height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
     }
 
     .square {
@@ -21,22 +21,22 @@
       position: relative;
     }
 
-    .diamond-inside {
-      width: 30px;
-      height: 30px;
-      border: 1px solid white;
+    .tilted-line {
+      width: 2px;
+      height: 40px;
+      border-left: 4px double white;
+      background-color: transparent;
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -50%) rotate(45deg); /* diamond = square rotated 45° */
+      transform: translate(-50%, -50%) rotate(45deg);
       box-sizing: border-box;
-      background: transparent;
     }
   </style>
 </head>
 <body>
   <div class="square">
-    <div class="diamond-inside"></div>
+    <div class="tilted-line"></div>
   </div>
 </body>
 </html>
