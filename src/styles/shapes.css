@@ -83,9 +83,25 @@
     width: 50%;
     height: 80px;
     background-color: black;
-    color: white;
     border-left: none;
     border-top: none;
 }
-
-
+.shapes #rectangle,.shapes #roundedrect,.shapes #circle,.shapes #diamond {
+    background-color: transparent;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    overflow: auto;
+}
+ .shapes #rectangle{
+    background-image: url("/public/left/rect.png");
+}
+.shapes #roundedrect{
+    background-image: url("/public/left/rr.png");
+}
+.shapes #circle{
+    background-image: url("/public/left/ellipse.png");
+} 
+.shapes #diamond{
+    background-image: url("/public/left/diamond.png");
+}

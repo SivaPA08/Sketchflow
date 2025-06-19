@@ -146,10 +146,10 @@ export default function App() {
               <p>Shapes</p>
             </div>
             <div className="contents">
-              <button onClick={() => addItem(Rectangle)}>Rectangle</button>
-              <button onClick={() => addItem(RoundedRect)}>RR</button>
-              <button onClick={() => addItem(Circle)}>Circle</button>
-              <button onClick={() => addItem(Diamond)}>Diamond</button>
+              <button id="rectangle" onClick={() => addItem(Rectangle)}>rect</button>
+              <button id="roundedrect" onClick={() => addItem(RoundedRect)}>rr</button>
+              <button id="circle" onClick={() => addItem(Circle)}>cir</button>
+              <button id="diamond" onClick={() => addItem(Diamond)}>dia</button>
             </div>
           </div>
 
