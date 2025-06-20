@@ -1,6 +1,7 @@
 import "./App.css";
 import "./styles/shapes.css";
 import "./styles/rightbar.css";
+import "./styles/textsize.css"
 import Rectangle from "./shapes/Rectangle";
 import RoundedRect from "./shapes/RoundedRect";
 import Circle from "./shapes/Circle";
@@ -57,6 +58,7 @@ export default function App() {
   const boardRef = useRef<HTMLDivElement | null>(null);
   const [contBg, setcontBg] = useState<string>("white");
   const [selectedId, setselecteddId] = useState<number | null>(null);
+  const [textsize,settextsize]=useState<number>(5);
   function addItem(ShapeComp: FC<ShapeProps>) {
     const boardele = boardRef.current;
     if (!boardele) return;
@@ -245,6 +247,18 @@ export default function App() {
             ></button>
             <button className="greyc" onClick={() => BGofCont("grey")}></button>
           </div>
+        </div>
+
+
+        <div className="textsize">
+          <p style={{color:"white"}}>FontSize</p>
+          <input 
+          type="range" 
+          min={5}
+          max={50}
+          value={textsize}
+          onInput={(e)=>settextsize(Number((e.target as HTMLInputElement).value))}
+          /><output id="textsizeoutput" style={{color:"white"}}>{textsize}</output>
         </div>
         {/* right-sidebar content */}
       </aside>
