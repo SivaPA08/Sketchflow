@@ -5,6 +5,8 @@ import Rectangle from "./shapes/Rectangle";
 import RoundedRect from "./shapes/RoundedRect";
 import Circle from "./shapes/Circle";
 import Diamond from "./shapes/Diamond";
+import Heading from "./shapes/Heading";
+import Paragraph from "./shapes/Paragraph";
 import NormalLine from "./lines/normal";
 import DashedLine from "./lines/dashedline";
 import DottedLine from "./lines/dottedline";
@@ -146,6 +148,8 @@ export default function App() {
               <p>Shapes</p>
             </div>
             <div className="contents">
+              <button id="heading" onClick={()=>addItem(Heading)}></button>
+              <button id="paragraph" onClick={()=>addItem(Paragraph)}></button>
               <button id="rectangle" onClick={() => addItem(Rectangle)}></button>
               <button id="roundedrect" onClick={() => addItem(RoundedRect)}></button>
               <button id="circle" onClick={() => addItem(Circle)}></button>

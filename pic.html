@@ -19,12 +19,19 @@
       height: 60px;
       border: 2px solid white;
       position: relative;
+      color: white;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .tilted-line {
       width: 2px;
       height: 40px;
-      border-left: 4px double white;
+      border-left: 2px solid white;
       background-color: transparent;
       position: absolute;
       top: 50%;
@@ -32,11 +39,13 @@
       transform: translate(-50%, -50%) rotate(45deg);
       box-sizing: border-box;
     }
+
+
   </style>
 </head>
 <body>
   <div class="square">
-    <div class="tilted-line"></div>
+    <p>paragraph</p>
   </div>
 </body>
 </html>

@@ -89,7 +89,7 @@
 .lines button:hover,.shapes button:hover{
     border: 5px solid grey;
 }
-.shapes #rectangle,.shapes #roundedrect,.shapes #circle,.shapes #diamond ,
+.shapes #rectangle,.shapes #roundedrect,.shapes #circle,.shapes #diamond ,.shapes #heading,.shapes #paragraph,
 .lines #line,.lines #dashedline,.lines #dottedline,.lines #doubleline{
     background-color: transparent;
     background-size: contain;
@@ -108,6 +108,12 @@
 } 
 .shapes #diamond{
     background-image: url("/public/left/diamond.png");
+}
+.shapes #heading{
+    background-image: url("/public/left/heading.png");
+}
+.shapes #paragraph{
+    background-image: url("/public/left/paragraph.png");
 }
 .lines #line{
     background-image: url("/public/left/Lines/normal.png");
