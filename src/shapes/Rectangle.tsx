@@ -1,6 +1,6 @@
 // Rectangle.tsx
 import React, { useState, useRef, type CSSProperties } from "react";
-
+import type { ShapeProps } from "../App";
 type EdgeHandle = "top" | "right" | "bottom" | "left";
 type Point = { x: number; y: number };
 type Dims = { width: number; height: number };
@@ -17,7 +17,7 @@ type Props={
 
 
 export default function Rectangle(
-  {left,top,width,height,bg,selected,onclick}:Props) {
+  {left,top,width,height,bg,textsize,selected,onclick}: ShapeProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const [dims, setDims] = useState<Dims>({ width: width, height: height });
@@ -124,7 +124,7 @@ export default function Rectangle(
     border: "none",
     background: bg,
     padding: 8,
-    fontSize: 14,
+    fontSize: textsize,
     resize: "none",
     pointerEvents: editing ? "auto" : "none",
   };

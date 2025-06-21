@@ -20,6 +20,7 @@ export interface ShapeProps {
   width: number;
   height: number;
   bg: string;
+  textsize: number;
   selected: boolean;
   onclick: () => void;
 }
@@ -39,6 +40,7 @@ interface Item {
   top: number;
   width: number;
   height: number;
+  textsize: number;
   bgColor: string;
   Shape: FC<ShapeProps>;
 }
@@ -75,6 +77,7 @@ export default function App() {
       width: 200,
       height: 100,
       bgColor: contBg,
+      textsize:textsize,
       Shape: ShapeComp,
     };
     setitems((prev) => [...prev, newItem]);
@@ -86,6 +89,14 @@ export default function App() {
         item.id === selectedId ? { ...item, bgColor: color } : item
       )
     );
+  }
+  function SizeofText(fontsize:number){
+    settextsize(fontsize)
+    setitems((prev)=>
+      prev.map((item)=>
+        item.id===selectedId?{...item,textsize:textsize}:item
+      )
+    )
   }
 
   function addItemLine(Shapecomp: FC<LineProps>) {
@@ -205,6 +216,7 @@ export default function App() {
                   width={item.width}
                   height={item.height}
                   bg={item.bgColor}
+                  textsize={item.textsize}
                   selected={item.id === selectedId}
                   onclick={() => setselecteddId(item.id)}
                 />
@@ -254,10 +266,10 @@ export default function App() {
           <p style={{color:"white"}}>FontSize</p>
           <input 
           type="range" 
-          min={5}
+          min={10}
           max={50}
           value={textsize}
-          onInput={(e)=>settextsize(Number((e.target as HTMLInputElement).value))}
+          onInput={(e)=>SizeofText(Number((e.target as HTMLInputElement).value))}
           /><output id="textsizeoutput" style={{color:"white"}}>{textsize}</output>
         </div>
         {/* right-sidebar content */}
