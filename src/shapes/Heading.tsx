@@ -1,23 +1,12 @@
 // Rectangle.tsx
 import React, { useState, useRef, type CSSProperties } from "react";
-
+import type { ShapeProps } from "../App";
 type EdgeHandle = "top" | "right" | "bottom" | "left";
 type Point = { x: number; y: number };
 type Dims = { width: number; height: number };
 
-type Props={
-  left:number;
-  top:number;
-  width:number;
-  height:number;
-  bg:string;
-  selected:boolean,
-  onclick:()=>void;
-}
-
-
 export default function Heading(
-  {left,top,width,height,bg,selected,onclick}:Props) {
+  {left,top,width,height,bg,textsize=30,selected,onclick}:ShapeProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const [dims, setDims] = useState<Dims>({ width: width, height: height });
@@ -125,7 +114,7 @@ export default function Heading(
     background: "transparent",
     color:"white",
     padding: 8,
-    fontSize: 30,
+    fontSize: textsize,
     resize: "none",
     textAlign:"center",
     pointerEvents: editing ? "auto" : "none",

@@ -1,19 +1,8 @@
-// Rectangle.tsx
 import React, { useState, useRef, type CSSProperties } from "react";
 import type { ShapeProps } from "../App";
 type EdgeHandle = "top" | "right" | "bottom" | "left";
 type Point = { x: number; y: number };
 type Dims = { width: number; height: number };
-
-type Props={
-  left:number;
-  top:number;
-  width:number;
-  height:number;
-  bg:string;
-  selected:boolean,
-  onclick:()=>void;
-}
 
 
 export default function Rectangle(
