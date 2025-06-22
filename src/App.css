@@ -31,7 +31,9 @@
     border-right: 2px solid grey;
     position: relative;
     z-index: 2;
+
   }
+
   
   .rightbar {
     grid-area: rightbar;

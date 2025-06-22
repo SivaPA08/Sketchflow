@@ -12,7 +12,12 @@
     overflow: none;
     overflow-y: scroll;
     scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
     
+}
+.mainleft ::-webkit-scrollbar{
+    display: none;
 }
 
 .shapes{
