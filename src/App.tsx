@@ -60,7 +60,7 @@ export default function App() {
   const boardRef = useRef<HTMLDivElement | null>(null);
   const [contBg, setcontBg] = useState<string>("white");
   const [selectedId, setselecteddId] = useState<number | null>(null);
-  const [textsize,settextsize]=useState<number>(5);
+  const [textsize,settextsize]=useState<number>(20);
   function addItem(ShapeComp: FC<ShapeProps>) {
     const boardele = boardRef.current;
     if (!boardele) return;
