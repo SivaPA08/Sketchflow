@@ -1,4 +1,4 @@
-// Rectangle.tsx
+import "./style/scrollbar.css"
 import React, { useState, useRef, type CSSProperties } from "react";
 import type { ShapeProps } from "../App";
 type EdgeHandle = "top" | "right" | "bottom" | "left";
@@ -159,6 +159,7 @@ export default function Paragraph(
       <textarea
         ref={textareaRef}
         style={textareaStyle}
+        className="scrollbar"
         onBlur={handleBlur}
         defaultValue={"text here"}
       />

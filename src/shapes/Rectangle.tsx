@@ -159,6 +159,7 @@ export default function Rectangle(
         style={textareaStyle}
         className="scrollbar"
         onBlur={handleBlur}
+        defaultValue={"text"}
       />
       {(["top", "right", "bottom", "left"] as EdgeHandle[]).map(handle => (
         <div
