@@ -52,19 +52,20 @@
 
     position: relative;
     z-index: 1;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .board::-webkit-scrollbar{
+    display: none;
   }
   
   .scroll-wrap {
     width: 200vw;       /* twice the viewport width */
     height: 200vh;       /* fill the board cell vertically */
     
-    /* background image lives here so it scrolls */
     background-image: url("/public/pictures/darkbg.png");
     background-repeat: repeat;
     background-position: top left;
-    
-    /* if you have inline content in here, flex still works */
-    display: flex;
   }
   
   .bottombar {
