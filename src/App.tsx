@@ -14,6 +14,7 @@ import DashedLine from "./lines/dashedline";
 import DottedLine from "./lines/dottedline";
 import DoubleLine from "./lines/doubleline";
 import { useEffect, useRef, useState, type MouseEvent, type FC } from "react";
+import { clearall, unselect } from "./helper/operation";
 
 export interface ShapeProps {
   left: number;
@@ -54,7 +55,7 @@ interface ItemLine {
   Shape: FC<LineProps>;
 }
 
-type BordElement = Item | ItemLine;
+export type BordElement = Item | ItemLine;
 
 export default function App() {
   const [items, setitems] = useState<BordElement[]>([]);
@@ -75,8 +76,8 @@ export default function App() {
       isLine: false,
       left: scrollX + visibleW / 2,
       top: scrollY + visibleH / 2,
-      width: 200,
-      height: 100,
+      width: 120,
+      height: 60,
       bgColor: contBg,
       textsize:textsize,
       Shape: ShapeComp,
@@ -157,8 +158,8 @@ export default function App() {
           <button>undo</button>
           <button>redo</button>
           <button>delete</button>
-          <button>clear</button>
-          <button>unselect</button>
+          <button onClick={()=>clearall(setitems)()}>clear</button>
+          <button onClick={()=>unselect(setselecteddId)()}>unselect</button>
         </div>
       </header>
 
@@ -231,7 +232,6 @@ export default function App() {
               );
             }
           })}
-          {/* Your horizontal content goes here */}
         </div>
       </main>
 
@@ -280,7 +280,6 @@ export default function App() {
           onInput={(e)=>SizeofText(Number((e.target as HTMLInputElement).value))}
           /><output id="textsizeoutput" style={{color:"white"}}>{textsize}</output>
         </div>
-        {/* right-sidebar content */}
       </aside>
 
       <footer className="bottombar">
