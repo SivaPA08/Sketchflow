@@ -7,7 +7,7 @@ type Dims = { width: number; height: number };
 
 
 export default function Paragraph(
-  {left,top,width,height,bg,textsize,selected,onclick}:ShapeProps) {
+  {left,top,width,height,bg:_bg,textsize,selected,onclick}:ShapeProps) { //bg:_bg since bg is not used
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const [dims, setDims] = useState<Dims>({ width: width, height: height });

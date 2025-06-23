@@ -6,7 +6,7 @@ type Point = { x: number; y: number };
 type Dims = { width: number; height: number };
 
 export default function Heading(
-  {left,top,width,height,bg,textsize=30,selected,onclick}:ShapeProps) {
+  {left,top,width,height,bg:_bg,textsize=30,selected,onclick}:ShapeProps) { //bg:_bg since bg not used
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const [dims, setDims] = useState<Dims>({ width: width, height: height });
