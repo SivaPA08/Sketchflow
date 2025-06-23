@@ -1,7 +1,8 @@
 import "./App.css";
 import "./styles/shapes.css";
 import "./styles/rightbar.css";
-import "./styles/textsize.css"
+import "./styles/textsize.css";
+import "./styles/topbar.css";
 import Rectangle from "./shapes/Rectangle";
 import RoundedRect from "./shapes/RoundedRect";
 import Circle from "./shapes/Circle";
@@ -152,6 +153,7 @@ export default function App() {
     <div className="bdy">
       <header className="topbar">
         <h3>SketchFlow</h3>
+        <div className="operations"></div>
       </header>
 
       <aside className="leftbar">
