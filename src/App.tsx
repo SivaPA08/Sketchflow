@@ -14,7 +14,7 @@ import DashedLine from "./lines/dashedline";
 import DottedLine from "./lines/dottedline";
 import DoubleLine from "./lines/doubleline";
 import { useEffect, useRef, useState, type MouseEvent, type FC } from "react";
-import { clearall, unselect } from "./helper/operation";
+import { clearall, deletedselected, unselect } from "./helper/operation";
 
 export interface ShapeProps {
   left: number;
@@ -157,7 +157,7 @@ export default function App() {
         <div className="operations">
           <button>undo</button>
           <button>redo</button>
-          <button>delete</button>
+          <button onClick={()=>deletedselected(setitems,selectedId)}>delete</button>
           <button onClick={()=>clearall(setitems)()}>clear</button>
           <button onClick={()=>unselect(setselecteddId)()}>unselect</button>
         </div>

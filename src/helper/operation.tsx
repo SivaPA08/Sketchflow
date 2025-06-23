@@ -7,3 +7,8 @@ export function clearall(setItems:Dispatch<SetStateAction<BordElement[]>>){
 export function unselect(selectedId:Dispatch<SetStateAction<number |  null>>){
     return ()=>selectedId(null);
 }
+export function deletedselected(Items:Dispatch<SetStateAction<BordElement[]>>,selectedId: number | null ){
+    if(selectedId==null) return;
+    Items(prev=>prev.filter(item=>item.id!=selectedId))
+}
+    
