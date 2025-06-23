@@ -153,7 +153,13 @@ export default function App() {
     <div className="bdy">
       <header className="topbar">
         <h3>SketchFlow</h3>
-        <div className="operations"></div>
+        <div className="operations">
+          <button>undo</button>
+          <button>redo</button>
+          <button>delete</button>
+          <button>clear</button>
+          <button>unselect</button>
+        </div>
       </header>
 
       <aside className="leftbar">

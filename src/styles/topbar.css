@@ -11,8 +11,21 @@
 .topbar .operations{
     position: absolute;
     width: 100%;
-    height: 30px;
+    height: 40px;
     border-top: 2px solid grey;
     bottom: 0;
-
+    display: flex;
+    align-items: center;
+    
+}
+.topbar .operations button{
+    width: 70px;
+    height: 30px;
+    background-color: black;
+    color: white;
+    border: none;
+}
+.topbar .operations button:hover{
+    border: 1px solid grey;
+    border-radius: 5px;
 }
