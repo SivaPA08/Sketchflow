@@ -163,6 +163,7 @@ export default function App() {
           <button onClick={()=>deletedselected(setitems,selectedId)}>delete</button>
           <button onClick={()=>clearall(setitems)()}>clear</button>
           <button onClick={()=>unselect(setselecteddId)()}>unselect</button>
+          <button>reset</button>
         </div>
       </header>
 
