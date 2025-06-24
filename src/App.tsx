@@ -155,6 +155,9 @@ export default function App() {
       <header className="topbar">
         <h3>SketchFlow</h3>
         <div className="operations">
+          <button onClick={
+            ()=>window.open("https://sivapa08.github.io/Sketchflow/","_blank")
+          }>new</button>
           <button>undo</button>
           <button>redo</button>
           <button onClick={()=>deletedselected(setitems,selectedId)}>delete</button>
