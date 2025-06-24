@@ -11,4 +11,14 @@ export function deletedselected(Items:Dispatch<SetStateAction<BordElement[]>>,se
     if(selectedId==null) return;
     Items(prev=>prev.filter(item=>item.id!=selectedId))
 }
-    
+export function reseteverything(
+    item:Dispatch<SetStateAction<BordElement[]>>,
+    selectedId:Dispatch<SetStateAction<number | null>> ,
+    contbg:Dispatch<SetStateAction<string>> ,
+    textsize:Dispatch<SetStateAction<number >>,
+) {
+    item([]);
+    selectedId(null);
+    contbg("white");
+    textsize(15);
+}

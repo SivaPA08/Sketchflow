@@ -14,7 +14,7 @@ import DashedLine from "./lines/dashedline";
 import DottedLine from "./lines/dottedline";
 import DoubleLine from "./lines/doubleline";
 import { useEffect, useRef, useState, type MouseEvent, type FC } from "react";
-import { clearall, deletedselected, unselect } from "./helper/operation";
+import { clearall, deletedselected, reseteverything, unselect } from "./helper/operation";
 
 export interface ShapeProps {
   left: number;
@@ -62,7 +62,7 @@ export default function App() {
   const boardRef = useRef<HTMLDivElement | null>(null);
   const [contBg, setcontBg] = useState<string>("white");
   const [selectedId, setselecteddId] = useState<number | null>(null);
-  const [textsize,settextsize]=useState<number>(20);
+  const [textsize,settextsize]=useState<number>(15);
   function addItem(ShapeComp: FC<ShapeProps>) {
     const boardele = boardRef.current;
     if (!boardele) return;
@@ -163,7 +163,7 @@ export default function App() {
           <button onClick={()=>deletedselected(setitems,selectedId)}>delete</button>
           <button onClick={()=>clearall(setitems)()}>clear</button>
           <button onClick={()=>unselect(setselecteddId)()}>unselect</button>
-          <button>reset</button>
+          <button onClick={()=>reseteverything(setitems,setselecteddId,setcontBg,settextsize)}>reset</button>
         </div>
       </header>
 
