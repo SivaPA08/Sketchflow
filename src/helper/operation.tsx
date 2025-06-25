@@ -25,14 +25,24 @@ export function clearall(
 
 export function deletedselected(
     selectedId: number | null,
-    setundoitems:Dispatch<SetStateAction<BordElement[][]>>
-) {
-  if (selectedId == null) return;
-  const setitems = useBordStore.getState().setitems;
-  const items=useBordStore.getState().items;
-  setundoitems(prev=>[...prev,items])
-  setitems((prev) => prev.filter((item) => item.id !== selectedId));
-}
+    setundoitems: Dispatch<SetStateAction<BordElement[][]>>
+  ) {
+    if (selectedId == null) return;
+  
+    const setitems = useBordStore.getState().setitems;
+    const items = useBordStore.getState().items;
+  
+    setundoitems((prev) => {
+      const last = prev[prev.length - 1];
+      const isSame =
+        last && JSON.stringify(last) === JSON.stringify(items);
+  
+      if (isSame) return prev;
+      return [...prev, items];
+    });
+  
+    setitems((prev) => prev.filter((item) => item.id !== selectedId));
+  }
 
 export function unselect(
   selectedId: Dispatch<SetStateAction<number | null>>
