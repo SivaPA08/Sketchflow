@@ -14,9 +14,11 @@ import DashedLine from "./lines/dashedline";
 import DottedLine from "./lines/dottedline";
 import DoubleLine from "./lines/doubleline";
 import { useEffect, useRef, useState, type MouseEvent, type FC } from "react";
-import { clearall, deletedselected, reseteverything, unselect } from "./helper/operation";
+import { clearall, deletedselected, reseteverything, undofunc, unselect } from "./helper/operation";
+import { useBordStore } from "./global/Items";
 
 export interface ShapeProps {
+  id:number;
   left: number;
   top: number;
   width: number;
@@ -28,6 +30,7 @@ export interface ShapeProps {
 }
 
 export interface LineProps {
+  id:number;
   left:number;
   top:number;
   bg:string;
@@ -58,11 +61,13 @@ interface ItemLine {
 export type BordElement = Item | ItemLine;
 
 export default function App() {
-  const [items, setitems] = useState<BordElement[]>([]);
+  const items   = useBordStore((s) => s.items);
+const setitems = useBordStore((s) => s.setitems);
   const boardRef = useRef<HTMLDivElement | null>(null);
   const [contBg, setcontBg] = useState<string>("white");
   const [selectedId, setselecteddId] = useState<number | null>(null);
   const [textsize,settextsize]=useState<number>(15);
+  const [undoitem,setundoitem]=useState<BordElement[][]>([]);
   function addItem(ShapeComp: FC<ShapeProps>) {
     const boardele = boardRef.current;
     if (!boardele) return;
@@ -158,12 +163,12 @@ export default function App() {
           <button onClick={
             ()=>window.open("https://sivapa08.github.io/Sketchflow/","_blank")
           }>new</button>
-          <button>undo</button>
+          <button onClick={()=>undofunc(setundoitem)}>undo</button>
           <button>redo</button>
-          <button onClick={()=>deletedselected(setitems,selectedId)}>delete</button>
-          <button onClick={()=>clearall(setitems)()}>clear</button>
+          <button onClick={()=>deletedselected(selectedId,setundoitem)}>delete</button>
+          <button onClick={()=>clearall(setundoitem)}>clear</button>
           <button onClick={()=>unselect(setselecteddId)()}>unselect</button>
-          <button onClick={()=>reseteverything(setitems,setselecteddId,setcontBg,settextsize)}>reset</button>
+          <button onClick={()=>reseteverything(setselecteddId,setcontBg,settextsize)}>reset</button>
         </div>
       </header>
 
@@ -212,6 +217,7 @@ export default function App() {
               return (
                 <Linecomp
                   key={item.id}
+                  id={item.id}
                   left={item.left}
                   top={item.top}
                   bg={item.bgColor}
@@ -224,6 +230,7 @@ export default function App() {
               return (
                 <Shapecomp
                   key={item.id}
+                  id={item.id}
                   left={item.left}
                   top={item.top}
                   width={item.width}

@@ -1,13 +1,17 @@
 import "./style/scrollbar.css"
 import React, { useState, useRef, type CSSProperties } from "react";
 import type { ShapeProps } from "../App";
+import { useBordStore } from "../global/Items";
 type EdgeHandle = "top" | "right" | "bottom" | "left";
 type Point = { x: number; y: number };
 type Dims = { width: number; height: number };
 
 
 export default function Rectangle(
-  {left,top,width,height,bg,textsize,selected,onclick}: ShapeProps) {
+  {id,left,top,width,height,bg,textsize,selected,onclick}: ShapeProps) {
+    const items   = useBordStore((s) => s.items);
+const setitems = useBordStore((s) => s.setitems);
+
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   const [dims, setDims] = useState<Dims>({ width: width, height: height });
@@ -81,6 +85,14 @@ export default function Rectangle(
 
   const onDragMouseUp = () => {
     dragRef.current = false;
+    setitems(prev =>
+      prev.map(item =>
+        id === item.id
+          ? { ...item, left: pos.x, top: pos.y,width:dims.width,height:dims.height }
+          : item
+      )
+    );
+    
     window.removeEventListener("mousemove", onDragMouseMove);
     window.removeEventListener("mouseup", onDragMouseUp);
   };
