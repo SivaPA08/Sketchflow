@@ -62,6 +62,7 @@ const setitems = useBordStore((s) => s.setitems);
 
   const onResizeMouseUp = () => {
     resizingRef.current = null;
+    setitems(prev=>prev.map(item=>id===item.id?{...item,width:dims.width,height:dims.height}:item))
     window.removeEventListener("mousemove", onResizeMouseMove);
     window.removeEventListener("mouseup", onResizeMouseUp);
   };
@@ -88,7 +89,7 @@ const setitems = useBordStore((s) => s.setitems);
     setitems(prev =>
       prev.map(item =>
         id === item.id
-          ? { ...item, left: pos.x, top: pos.y,width:dims.width,height:dims.height }
+          ? { ...item, left: pos.x, top: pos.y}
           : item
       )
     );
