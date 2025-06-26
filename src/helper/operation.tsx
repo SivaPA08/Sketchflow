@@ -7,12 +7,22 @@ export function undofunc() {
     const { undo, setUndo } = useUndoStore.getState();
     if (!undo.length) return;
     const current = useBordStore.getState().items;
-    useRedoStore.getState().setRedo(r => [...r, current]);
-    const last = undo[undo.length - 1];
-    setUndo(undo.slice(0, -1));
-    useBordStore.getState().setitems(last);
-  }
-  
+    useRedoStore.getState().setRedo((r) => [...r, current]);
+    const uniqueUndo: typeof undo = [];
+    for (let i = 0; i < undo.length; i++) {
+        if (
+            i === 0 ||
+            JSON.stringify(undo[i]) !== JSON.stringify(undo[i - 1])
+        ) {
+            uniqueUndo.push(undo[i]);
+        }
+    }
+    if (!uniqueUndo.length) return;
+    const lastValid = uniqueUndo[uniqueUndo.length - 1];
+    setUndo(uniqueUndo.slice(0, -1));
+    useBordStore.getState().setitems(lastValid);
+}
+
 export function redofunc() {
     const { redo, setRedo } = useRedoStore.getState();
     if (!redo.length) return;
