@@ -27,12 +27,12 @@ export default function Rectangle({
     const [pos, setPos] = useState<Point>({ x: left, y: top });
     const [editing, setEditing] = useState(false);
 
-    React.useEffect(()=>{
-        setPos({x:left,y:top});
-    },[left,top])
-    React.useEffect(()=>{
-        setDims({width,height});
-    },[width,height])
+    // React.useEffect(()=>{
+    //     setPos({x:left,y:top});
+    // },[left,top])
+    // React.useEffect(()=>{
+    //     setDims({width,height});
+    // },[width,height])
 
     // refs
     const resizingRef = useRef<EdgeHandle | null>(null);
