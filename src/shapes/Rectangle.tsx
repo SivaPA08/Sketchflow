@@ -20,13 +20,19 @@ export default function Rectangle({
 }: ShapeProps) {
 
     const setitems = useBordStore((s) => s.setitems);
-    const setundo=useUndoStore(s=>s.setUndo);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     const [dims, setDims] = useState<Dims>({ width: width, height: height });
     const [hovered, setHovered] = useState(false);
     const [pos, setPos] = useState<Point>({ x: left, y: top });
     const [editing, setEditing] = useState(false);
+
+    React.useEffect(()=>{
+        setPos({x:left,y:top});
+    },[left,top])
+    React.useEffect(()=>{
+        setDims({width,height});
+    },[width,height])
 
     // refs
     const resizingRef = useRef<EdgeHandle | null>(null);
@@ -44,7 +50,6 @@ export default function Rectangle({
         startDims.current = { ...dims };
         startPos.current = { ...pos };
         startMouse.current = { x: e.clientX, y: e.clientY };
-
         window.addEventListener("mousemove", onResizeMouseMove);
         window.addEventListener("mouseup", onResizeMouseUp);
     };
@@ -81,7 +86,7 @@ export default function Rectangle({
         setitems((prev) =>
             prev.map((item) =>
                 id === item.id
-                    ? { ...item, width: dims.width, height: dims.height }
+                    ? { ...item,left:pos.x,top:pos.y, width: dims.width, height: dims.height }
                     : item
             )
         );
@@ -94,7 +99,6 @@ export default function Rectangle({
         dragRef.current = true;
         startMouse.current = { x: e.clientX, y: e.clientY };
         startPos.current = { ...pos };
-
         window.addEventListener("mousemove", onDragMouseMove);
         window.addEventListener("mouseup", onDragMouseUp);
     };
@@ -112,7 +116,7 @@ export default function Rectangle({
         useUndoStore.getState().setUndo(undo=>[...undo,items]);
         setitems((prev) =>
             prev.map((item) =>
-                id === item.id ? { ...item, left: pos.x, top: pos.y } : item
+                id === item.id ? { ...item, left: pos.x, top: pos.y ,width:dims.width,height:dims.height} : item
             )
         );
 

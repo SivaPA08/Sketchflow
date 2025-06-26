@@ -17,11 +17,13 @@ import { useEffect, useRef, useState, type MouseEvent, type FC } from "react";
 import {
     clearall,
     deletedselected,
+    redofunc,
     reseteverything,
     undofunc,
     unselect,
 } from "./helper/operation";
 import { useBordStore } from "./global/Items";
+import { useUndoStore } from "./global/undo";
 
 export interface ShapeProps {
     id: number;
@@ -92,6 +94,8 @@ export default function App() {
             textsize: textsize,
             Shape: ShapeComp,
         };
+        const curritem=useBordStore.getState().items;
+        useUndoStore.getState().setUndo(prev=>[...prev,curritem])
         setitems((prev) => [...prev, newItem]);
     }
     function BGofCont(color: string) {
@@ -179,7 +183,7 @@ export default function App() {
                         new
                     </button>
                     <button onClick={()=>undofunc()}>undo</button>
-                    <button>redo</button>
+                    <button onClick={()=>redofunc()}>redo</button>
                     <button onClick={() => deletedselected(selectedId)}>
                         delete
                     </button>
