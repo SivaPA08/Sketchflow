@@ -1,51 +1,53 @@
 import { create } from "zustand";
 import type { BordElement } from "../App";
+import { useBordStore } from "./Items";
 
 type UndoRedoStore = {
     undoStack: BordElement[][];
     redoStack: BordElement[][];
-    pushUndo: (items: BordElement[]) => void;
-    undo: (
-        setItems: (items: BordElement[]) => void,
-        currentItems: BordElement[]
-    ) => void;
-    redo: (
-        setItems: (items: BordElement[]) => void,
-        currentItems: BordElement[]
-    ) => void;
+    pushUndo: () => void;
+    undo: () => void;
+    redo: () => void;
     clearHistory: () => void;
 };
+
+function cloneItems(items: BordElement[]): BordElement[] {
+    return items.map(item => ({ ...item }));
+}
 
 export const useUndoRedoStore = create<UndoRedoStore>((set, get) => ({
     undoStack: [],
     redoStack: [],
 
-    pushUndo: (items) => {
+    pushUndo: () => {
+        const { items } = useBordStore.getState();
         set((state) => ({
-            undoStack: [...state.undoStack, JSON.parse(JSON.stringify(items))],
+            undoStack: [...state.undoStack, cloneItems(items)],
             redoStack: [],
         }));
     },
 
-    undo: (setItems, currentItems) => {
+    undo: () => {
         const { undoStack, redoStack } = get();
         if (undoStack.length === 0) return;
         const prevState = undoStack[undoStack.length - 1];
-        setItems(prevState);
+        const { setitems, items } = useBordStore.getState();
+        setitems(prevState);
         set({
             undoStack: undoStack.slice(0, -1),
-            redoStack: [...redoStack, JSON.parse(JSON.stringify(currentItems))],
+            redoStack: [...redoStack, cloneItems(items)],
         });
     },
 
-    redo: (setItems, currentItems) => {
+    redo: () => {
         const { redoStack, undoStack } = get();
         if (redoStack.length === 0) return;
         const nextState = redoStack[redoStack.length - 1];
-        setItems(nextState);
+        const { setitems, items } = useBordStore.getState();
+        setitems(nextState);
         set({
             redoStack: redoStack.slice(0, -1),
-            undoStack: [...undoStack, JSON.parse(JSON.stringify(currentItems))],
+            undoStack: [...undoStack, cloneItems(items)],
         });
     },
 

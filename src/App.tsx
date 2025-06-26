@@ -18,10 +18,10 @@ import {
     clearall,
     deletedselected,
     reseteverything,
-    undofunc,
     unselect,
 } from "./helper/operation";
 import { useBordStore } from "./global/Items";
+import { useUndoRedoStore } from "./global/undo";
 
 export interface ShapeProps {
     id: number;
@@ -68,8 +68,11 @@ export type BordElement = Item | ItemLine;
 
 export default function App() {
     const items = useBordStore((s) => s.items);
-
     const setitems = useBordStore((s) => s.setitems);
+
+    const pushUndo=useUndoRedoStore(s=>s.pushUndo);
+    const undo=useUndoRedoStore(s=>s.undo);
+    const redo=useUndoRedoStore(s=>s.redo);
     const boardRef = useRef<HTMLDivElement | null>(null);
     const [contBg, setcontBg] = useState<string>("white");
     const [selectedId, setselecteddId] = useState<number | null>(null);
@@ -77,7 +80,7 @@ export default function App() {
     function addItem(ShapeComp: FC<ShapeProps>) {
         const boardele = boardRef.current;
         if (!boardele) return;
-
+        pushUndo();
         const visibleW = boardele.clientWidth;
         const visibleH = boardele.clientHeight;
         const scrollX = boardele.scrollLeft;
@@ -179,8 +182,8 @@ export default function App() {
                     >
                         new
                     </button>
-                    <button>undo</button>
-                    <button>redo</button>
+                    <button onClick={undo}>undo</button>
+                    <button onClick={redo}>redo</button>
                     <button onClick={() => deletedselected(selectedId)}>
                         delete
                     </button>
