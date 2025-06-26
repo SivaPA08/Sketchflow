@@ -18,6 +18,7 @@ import {
   type Cord = { x1: number; y1: number; x2: number; y2: number };
   
   const DottedLine: FC<LineProps> = ({ left,top,lenght:defaultLenght=100,bg,selected, onClick }) => {
+    const [ishover,setishover]=useState<boolean>(false);
     const [cord, setCord] = useState<Cord>({ x1:left, y1:top, x2:left+defaultLenght, y2: top});
     const dragging = useRef<"line" | "start" | "end" | null>(null);
     const offset = useRef({ x: 0, y: 0 });
@@ -76,6 +77,8 @@ import {
       <>
         <div
           onMouseDown={(e) => onMouseDownPart("line", e)}
+          onMouseEnter={()=>setishover(true)}
+          onMouseLeave={()=>setishover(false)}
           style={{
             position: "absolute",
             left: midX - length / 2,
@@ -91,29 +94,35 @@ import {
   
         <div
           onMouseDown={(e) => onMouseDownPart("start", e)}
+          onMouseEnter={()=>setishover(true)}
+          onMouseLeave={()=>setishover(false)}
           style={{
             position: "absolute",
             left: cord.x1 - 8,
             top: cord.y1 - 8,
-            width: 16,
-            height: 16,
+            width: 15,
+            height: 15,
             borderRadius: "50%",
-            background: selected?"blue":"transparent",
+            background: selected || ishover?"white":"transparent",
             cursor: "pointer",
+            border:selected || ishover ?"1px solid black":"none",
           }}
         />
   
         <div
           onMouseDown={(e) => onMouseDownPart("end", e)}
+          onMouseEnter={()=>setishover(true)}
+          onMouseLeave={()=>setishover(false)}
           style={{
             position: "absolute",
             left: cord.x2 - 8,
             top: cord.y2 - 8,
-            width: 16,
-            height: 16,
+            width: 15,
+            height: 15,
             borderRadius: "50%",
-            background: selected?"blue":"transparent",
+            background: selected || ishover?"white":"transparent",
             cursor: "pointer",
+            border:selected || ishover ?"1px solid black":"none",
           }}
         />
       </>
