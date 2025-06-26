@@ -2,6 +2,7 @@ import "./style/scrollbar.css";
 import React, { useState, useRef, type CSSProperties } from "react";
 import type { ShapeProps } from "../App";
 import { useBordStore } from "../global/Items";
+import { useUndoStore } from "../global/undo";
 type EdgeHandle = "top" | "right" | "bottom" | "left";
 type Point = { x: number; y: number };
 type Dims = { width: number; height: number };
@@ -17,9 +18,9 @@ export default function Rectangle({
     selected,
     onclick,
 }: ShapeProps) {
-    const items = useBordStore((s) => s.items);
-    const setitems = useBordStore((s) => s.setitems);
 
+    const setitems = useBordStore((s) => s.setitems);
+    const setundo=useUndoStore(s=>s.setUndo);
     const textareaRef = useRef<HTMLTextAreaElement>(null);
 
     const [dims, setDims] = useState<Dims>({ width: width, height: height });
@@ -39,7 +40,6 @@ export default function Rectangle({
     const handleResizeMouseDown = (edge: EdgeHandle, e: React.MouseEvent) => {
         e.stopPropagation();
         setEditing(false);
-
         resizingRef.current = edge;
         startDims.current = { ...dims };
         startPos.current = { ...pos };
@@ -76,6 +76,8 @@ export default function Rectangle({
 
     const onResizeMouseUp = () => {
         resizingRef.current = null;
+        const items=useBordStore.getState().items;
+        useUndoStore.getState().setUndo(undo=>[...undo,items])
         setitems((prev) =>
             prev.map((item) =>
                 id === item.id
@@ -106,6 +108,8 @@ export default function Rectangle({
 
     const onDragMouseUp = () => {
         dragRef.current = false;
+        const items=useBordStore.getState().items;
+        useUndoStore.getState().setUndo(undo=>[...undo,items]);
         setitems((prev) =>
             prev.map((item) =>
                 id === item.id ? { ...item, left: pos.x, top: pos.y } : item
