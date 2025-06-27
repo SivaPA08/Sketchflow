@@ -1,29 +1,32 @@
 import { useState, useRef, useEffect, type MouseEvent, type FC } from "react";
-
-export interface LineProps {
-    left: number;
-    top: number;
-    length?: number;
-    bg: string;
-    selected: boolean;
-    onClick: () => void;
-}
+import type { LineProps } from "../App";
+//import type { LineProps } from "./dashedline";
+// export interface LineProps {
+//     left: number;
+//     top: number;
+//     length?: number;
+//     bg: string;
+//     selected: boolean;
+//     onClick: () => void;
+// }
 
 type Cord = { x1: number; y1: number; x2: number; y2: number };
 
 const NormalLine: FC<LineProps> = ({
-    left,
-    top,
-    length: defaultLength = 100,
+    id,
+    x1,
+    y1,
+    x2,
+    y2,
     bg,
     selected,
     onClick,
 }) => {
     const [cord, setCord] = useState<Cord>({
-        x1: left,
-        y1: top,
-        x2: left + defaultLength,
-        y2: top,
+        x1: x1,
+        y1: y1,
+        x2: x2,
+        y2: y2,
     });
     const dragging = useRef<"line" | "start" | "end" | null>(null);
     const offset = useRef({ x: 0, y: 0 });

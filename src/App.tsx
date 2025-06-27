@@ -39,8 +39,10 @@ export interface ShapeProps {
 
 export interface LineProps {
     id: number;
-    left: number;
-    top: number;
+    x1:number;
+    y1:number;
+    x2:number;
+    y2:number;
     bg: string;
     selected: boolean;
     onClick: () => void;
@@ -61,6 +63,10 @@ interface ItemLine {
     id: number;
     left: number;
     top: number;
+    x1:number;
+    y1:number;
+    x2:number;
+    y2:number;
     bgColor: string;
     isLine: true;
     Shape: FC<LineProps>;
@@ -128,6 +134,10 @@ export default function App() {
             id: Date.now(),
             left: scrollX + visibleW / 2,
             top: scrollY + visibleH / 2,
+            x1:scrollX+visibleW/2,
+            y1:scrollY+visibleH/2,
+            x2:scrollX+visibleW/2+100,
+            y2:scrollY+visibleH/2,
             bgColor: contBg,
             isLine: true,
             Shape: Shapecomp,
@@ -279,8 +289,10 @@ export default function App() {
                                 <Linecomp
                                     key={item.id}
                                     id={item.id}
-                                    left={item.left}
-                                    top={item.top}
+                                    x1={item.x1}
+                                    y1={item.y1}
+                                    x2={item.x2}
+                                    y2={item.y2}
                                     bg={item.bgColor}
                                     selected={item.id === selectedId}
                                     onClick={() => setselecteddId(item.id)}

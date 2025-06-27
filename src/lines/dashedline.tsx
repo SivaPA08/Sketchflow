@@ -5,20 +5,27 @@ import {
     type MouseEvent,
     type FC,
   } from "react";
+import type { LineProps } from "../App";
   
-  export interface LineProps {
-    left:number;
-    top:number;
-    length?:number,
-    bg:string;
-    selected: boolean;
-    onClick: () => void;
-  }
+  // export interface LineProps {
+  //   left:number;
+  //   top:number;
+  //   length?:number,
+  //   bg:string;
+  //   selected: boolean;
+  //   onClick: () => void;
+  // }
   
   type Cord = { x1: number; y1: number; x2: number; y2: number };
   
-  const DashedLine: FC<LineProps> = ({ left,top,bg,length:defaultLength=100,selected, onClick }) => {
-    const [cord, setCord] = useState<Cord>({ x1:left, y1:top, x2:left+defaultLength, y2: top});
+  const DashedLine: FC<LineProps> = ({ 
+    id,
+    x1,y1,x2,y2,
+    bg,
+    selected, 
+    onClick 
+  }) => {
+    const [cord, setCord] = useState<Cord>({ x1:x1, y1:y1, x2:x2, y2: y2});
     const [ishover,setishover]=useState<boolean>(false);
     const dragging = useRef<"line" | "start" | "end" | null>(null);
     const offset = useRef({ x: 0, y: 0 });
