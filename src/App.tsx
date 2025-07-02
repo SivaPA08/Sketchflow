@@ -3,6 +3,7 @@ import "./styles/shapes.css";
 import "./styles/rightbar.css";
 import "./styles/textsize.css";
 import "./styles/topbar.css";
+import "./styles/language.css"
 import Rectangle from "./shapes/Rectangle";
 import RoundedRect from "./shapes/RoundedRect";
 import Circle from "./shapes/Circle";
@@ -24,6 +25,7 @@ import {
 } from "./helper/operation";
 import { useBordStore } from "./global/Items";
 import { useUndoStore } from "./global/undo";
+import Langselect from "./Appcmp/Langselect";
 
 export interface ShapeProps {
     id: number;
@@ -378,6 +380,13 @@ export default function App() {
                     <output id="textsizeoutput" style={{ color: "white" }}>
                         {textsize}
                     </output>
+                </div>
+                <div className="langselectarea">
+                    <div className="title">Font Family</div>
+                    <div className="buttons">
+                    <Langselect></Langselect>
+                    </div>
+
                 </div>
             </aside>
 

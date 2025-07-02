@@ -1,0 +1,32 @@
+.langselect {
+    margin-top: 20px;
+    width: 170px;
+    height: 100px;
+    margin-left: 12px;
+  }
+  
+  .langselect .currlang {
+    margin-bottom: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .langselect .selectlang {
+    overflow-y: auto;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .langselect button {
+    width: 100%;
+    height: 30px;
+    color: white;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid white;
+  }
+  
+  .langselect .currlang p {
+    color: white;
+    font-size:x-small;
+  }
+  
