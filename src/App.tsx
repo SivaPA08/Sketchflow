@@ -26,6 +26,7 @@ import {
 import { useBordStore } from "./global/Items";
 import { useUndoStore } from "./global/undo";
 import Langselect from "./Appcmp/Langselect";
+import useLangStore from "./global/langstate";
 
 export interface ShapeProps {
     id: number;
@@ -35,6 +36,7 @@ export interface ShapeProps {
     height: number;
     bg: string;
     textsize: number;
+    fontf:string;
     selected: boolean;
     onclick: () => void;
 }
@@ -58,6 +60,7 @@ interface Item {
     width: number;
     height: number;
     textsize: number;
+    fontf:string;
     bgColor: string;
     Shape: FC<ShapeProps>;
 }
@@ -79,11 +82,22 @@ export type BordElement = Item | ItemLine;
 export default function App() {
     const items = useBordStore((s) => s.items);
     const setitems = useBordStore((s) => s.setitems);
-
+    const lang=useLangStore((s)=>s.lang)
     const boardRef = useRef<HTMLDivElement | null>(null);
     const [contBg, setcontBg] = useState<string>("white");
     const [selectedId, setselecteddId] = useState<number | null>(null);
     const [textsize, settextsize] = useState<number>(15);
+    useEffect(() => {
+        if (selectedId === null) return;
+        setitems(prev =>
+          prev.map(item =>
+            item.id === selectedId
+              ? { ...item, fontf: lang }
+              : item
+          )
+        );
+      }, [ lang]);
+      
     function addItem(ShapeComp: FC<ShapeProps>) {
         const boardele = boardRef.current;
         if (!boardele) return;
@@ -100,6 +114,7 @@ export default function App() {
             height: 60,
             bgColor: contBg,
             textsize: textsize,
+            fontf:lang,
             Shape: ShapeComp,
         };
         const curritem=useBordStore.getState().items;
@@ -312,6 +327,7 @@ export default function App() {
                                     height={item.height}
                                     bg={item.bgColor}
                                     textsize={item.textsize}
+                                    fontf={item.fontf}
                                     selected={item.id === selectedId}
                                     onclick={() => setselecteddId(item.id)}
                                 />

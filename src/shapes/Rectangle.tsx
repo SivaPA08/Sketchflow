@@ -15,6 +15,7 @@ export default function Rectangle({
     height,
     bg,
     textsize,
+    fontf,
     selected,
     onclick,
 }: ShapeProps) {
@@ -154,6 +155,7 @@ export default function Rectangle({
         background: bg,
         padding: 8,
         fontSize: textsize,
+        fontFamily:fontf,
         resize: "none",
         pointerEvents: editing ? "auto" : "none",
     };
