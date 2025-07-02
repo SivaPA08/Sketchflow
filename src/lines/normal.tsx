@@ -13,7 +13,7 @@ import type { LineProps } from "../App";
 type Cord = { x1: number; y1: number; x2: number; y2: number };
 
 const NormalLine: FC<LineProps> = ({
-    id,
+    id:_id,
     x1,
     y1,
     x2,
