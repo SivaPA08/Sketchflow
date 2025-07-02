@@ -9,7 +9,7 @@ type Dims = { width: number; height: number };
 
 
 export default function Paragraph(
-  {id,left,top,width,height,bg:_bg,textsize,selected,onclick}:ShapeProps) { //bg:_bg since bg is not used
+  {id,left,top,width,height,bg:_bg,textsize,fontf,selected,onclick}:ShapeProps) { //bg:_bg since bg is not used
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const setitems = useBordStore((s) => s.setitems);
   const [dims, setDims] = useState<Dims>({ width: width, height: height });
@@ -136,6 +136,7 @@ export default function Paragraph(
     color:"white",
     padding: 8,
     fontSize: textsize,
+    fontFamily:fontf,
     resize: "none",
     textAlign:"center",
     pointerEvents: editing ? "auto" : "none",

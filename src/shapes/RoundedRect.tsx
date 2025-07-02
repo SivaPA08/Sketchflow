@@ -9,7 +9,7 @@ type Dims = { width: number; height: number };
 
 
 export default function RoundedRect(
-  {id,left,top,width,height,bg,textsize,selected,onclick}:ShapeProps) {
+  {id,left,top,width,height,bg,textsize,fontf,selected,onclick}:ShapeProps) {
   const textareaRef = useRef<HTMLTextAreaElement>(null);
   const setitems = useBordStore((s) => s.setitems);
   const [dims, setDims] = useState<Dims>({ width: width, height: height });
@@ -135,6 +135,7 @@ export default function RoundedRect(
     borderRadius:"15px",
     padding: 8,
     fontSize: textsize,
+    fontFamily:fontf,
     resize: "none",
     pointerEvents: editing ? "auto" : "none",
   };

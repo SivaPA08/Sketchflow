@@ -15,6 +15,7 @@ export default function Heading({
     height,
     bg: _bg,
     textsize = 30,
+    fontf,
     selected,
     onclick,
 }: ShapeProps) {
@@ -163,6 +164,7 @@ export default function Heading({
         color: "white",
         padding: 8,
         fontSize: textsize,
+        fontFamily:fontf,
         resize: "none",
         textAlign: "center",
         pointerEvents: editing ? "auto" : "none",

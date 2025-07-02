@@ -15,6 +15,7 @@ export default function Diamond({
     height,
     bg,
     textsize,
+    fontf,
     selected,
     onclick,
 }: ShapeProps) {
@@ -161,6 +162,7 @@ export default function Diamond({
         background: bg,
         padding: 8,
         fontSize: textsize,
+        fontFamily:fontf,
         resize: "none",
         pointerEvents: editing ? "auto" : "none",
 
