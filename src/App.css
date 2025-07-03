@@ -41,7 +41,7 @@
     grid-area: board;
     overflow-x: auto;   /* horizontal-only scroll */
     overflow-y: auto;
-    margin: 5px 5px;     /* 30px top and bottom spacing */
+    margin: 5px 5px;    
 
     position: relative;
     z-index: 1;

@@ -2,7 +2,7 @@
     width: 100%;
     height: 100%;
     display: grid;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 230px 230px; /*it was 1fr 1fr*/
     grid-template-columns: 100%;
     grid-template-areas: 
     "shapes"
@@ -23,7 +23,7 @@
 .shapes{
     grid-area: shapes;
     width: 90%;
-    height: 300px;
+    height: 200px;
     background-color: rgb(0, 0, 0);
     color: white;
     margin-top: 20px;
@@ -59,7 +59,7 @@
 .lines{
     grid-area: lines;
     width: 90%;
-    height: 300px;
+    height: 200px;
     background-color: rgb(0, 0, 0);
     margin-top: 20px;
     
@@ -90,7 +90,7 @@
 }
 .lines button,.shapes button{
     width: 50%;
-    height: 80px;
+    height:60px;
     background-color: black;
     border: none;
 }
