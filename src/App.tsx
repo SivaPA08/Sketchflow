@@ -407,7 +407,8 @@ export default function App() {
             </aside>
 
             <footer className="bottombar">
-                <p>Copyright bro</p>
+                {/* write somethign */}
+                <p></p>
             </footer>
         </div>
     );
