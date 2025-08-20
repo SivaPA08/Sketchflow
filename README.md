@@ -1,11 +1,26 @@
-Visual editor for me :)
+# Sketchflow - Visual Editor
 
+A lightweight **Visual Editor** built with React and Zustand for state management.  
+Easily create, arrange, and manage elements on a canvas — designed for simplicity and speed.
 
-before cloning dont forget to install:
-zustand: npm install zustand
+Live Demo: [sivapa08.github.io/Sketchflow/](https://sivapa08.github.io/Sketchflow/)
 
-Then run:
-npm run dev
+---
 
-and go to:
-http://localhost:5173/      //adjust the port as per ur need
+## Features
+- Fast and responsive React-based editor  
+- State management powered by [Zustand](https://github.com/pmndrs/zustand)  
+- Drag-and-drop support for building layouts  
+- Visual customization options (colors, text, positions, etc.)  
+- Runs locally with hot-reload via Vite  
+
+---
+
+## Installation
+
+Clone the repo and install dependencies:
+
+```bash
+git clone https://github.com/yourusername/Sketchflow.git
+cd Sketchflow
+npm install
