@@ -1,5 +1,7 @@
 # Sketchflow - Visual Editor
 
+https://github.com/user-attachments/assets/f0b9ea95-833e-4f95-b4f3-2ae488fd735b
+
 A lightweight **Visual Editor** built with React and Zustand for state management.  
 Easily create, arrange, and manage elements on a canvas — designed for simplicity and speed.
 
